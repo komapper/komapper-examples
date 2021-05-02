@@ -1,5 +1,7 @@
 # komapper-examples
 
+[![Build](https://github.com/komapper/komapper-examples/actions/workflows/build.yml/badge.svg)](https://github.com/komapper/komapper-examples/actions/workflows/build.yml)
+
 ## Requirements
 
 - Java 11 or later
