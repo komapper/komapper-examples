@@ -29,15 +29,17 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-        kotlin {
-            targetExclude("build/**")
-            ktlint("0.41.0")
+    val javaLanguageVersion: JavaLanguageVersion = JavaLanguageVersion.of(11)
+
+    java {
+        toolchain {
+            languageVersion.set(javaLanguageVersion)
         }
     }
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+        val jvmTarget = javaLanguageVersion.toString()
+        kotlinOptions.jvmTarget = jvmTarget
     }
 
     tasks.withType<Test> {
@@ -47,5 +49,12 @@ subprojects {
     dependencies {
         "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.7.1")
         "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    }
+
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        kotlin {
+            targetExclude("build/**")
+            ktlint("0.41.0")
+        }
     }
 }

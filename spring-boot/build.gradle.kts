@@ -9,16 +9,16 @@ apply(plugin = "io.spring.dependency-management")
 
 val komapperVersion: String by project
 
-idea.module {
-    generatedSourceDirs.add(file("build/generated/ksp/main/kotlin"))
-}
-
 sourceSets {
     main {
         java {
             srcDir("build/generated/ksp/main/kotlin")
         }
     }
+}
+
+idea.module {
+    generatedSourceDirs.add(file("build/generated/ksp/main/kotlin"))
 }
 
 dependencies {
