@@ -7,5 +7,4 @@ pluginManagement {
 
 rootProject.name = "komapper-examples"
 include("console")
-include("console")
 include("spring-boot")
