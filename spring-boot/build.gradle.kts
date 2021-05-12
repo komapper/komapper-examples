@@ -29,10 +29,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-ksp {
-    arg("komapper.namingStrategy", "UPPER_SNAKE_CASE")
-}
-
 allOpen {
     annotation("org.springframework.context.annotation.Configuration")
     annotation("org.springframework.transaction.annotation.Transactional")

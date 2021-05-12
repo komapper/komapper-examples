@@ -23,10 +23,6 @@ dependencies {
     ksp("org.komapper:komapper-processor:$komapperVersion")
 }
 
-ksp {
-    arg("komapper.namingStrategy", "UPPER_SNAKE_CASE")
-}
-
 application {
     mainClass.set("org.komapper.example.ApplicationKt")
 }
