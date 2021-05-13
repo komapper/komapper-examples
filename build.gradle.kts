@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.5.0"
-    id("com.diffplug.spotless") version "5.12.4"
+    id("com.diffplug.spotless") version "5.12.5"
 }
 
 allprojects {
