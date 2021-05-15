@@ -1,14 +1,16 @@
 plugins {
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm")
     id("com.diffplug.spotless") version "5.12.5"
 }
+
+val ktlintVersion = "0.41.0"
 
 allprojects {
     apply(plugin = "com.diffplug.spotless")
 
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlinGradle {
-            ktlint("0.41.0")
+            ktlint(ktlintVersion)
         }
     }
 
@@ -39,7 +41,7 @@ subprojects {
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             targetExclude("build/**")
-            ktlint("0.41.0")
+            ktlint(ktlintVersion)
         }
     }
 }
