@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm") version "1.5.0"
     id("com.diffplug.spotless") version "5.12.5"
@@ -28,19 +26,6 @@ allprojects {
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
-
-    val javaLanguageVersion: JavaLanguageVersion = JavaLanguageVersion.of(11)
-
-    java {
-        toolchain {
-            languageVersion.set(javaLanguageVersion)
-        }
-    }
-
-    tasks.withType<KotlinCompile> {
-        val jvmTarget = javaLanguageVersion.toString()
-        kotlinOptions.jvmTarget = jvmTarget
-    }
 
     tasks.withType<Test> {
         useJUnitPlatform()
