@@ -15,5 +15,6 @@ pluginManagement {
 }
 
 rootProject.name = "komapper-examples"
+include("codegen")
 include("console")
 include("spring-boot")
