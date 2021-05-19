@@ -7,6 +7,6 @@ class AddressTest {
 
     @Test
     fun test() {
-        assertNotNull(Address.meta)
+        assertNotNull(AddressDef.meta)
     }
 }
