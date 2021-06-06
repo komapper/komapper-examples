@@ -24,7 +24,7 @@ idea.module {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.komapper:komapper-ext-spring-boot-starter:$komapperVersion")
+    implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
     ksp("org.komapper:komapper-processor:$komapperVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

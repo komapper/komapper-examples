@@ -1,8 +1,7 @@
 package org.komapper.example
 
-import org.komapper.core.Database
 import org.komapper.core.dsl.EntityDsl
-import org.komapper.core.dsl.runQuery
+import org.komapper.jdbc.Database
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.transaction.annotation.Transactional

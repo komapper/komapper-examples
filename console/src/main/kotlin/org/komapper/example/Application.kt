@@ -1,10 +1,9 @@
 package org.komapper.example
 
-import org.komapper.core.Database
 import org.komapper.core.dsl.EntityDsl
 import org.komapper.core.dsl.SchemaDsl
-import org.komapper.core.dsl.runQuery
-import org.komapper.transaction.transaction
+import org.komapper.jdbc.Database
+import org.komapper.tx.jdbc.transaction
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -31,7 +30,7 @@ fun main() {
 
         // SELECT
         val address1 = db.runQuery {
-            EntityDsl.from(a).first { a.id eq newAddress.id }
+            EntityDsl.from(a).where { a.id eq newAddress.id }.first()
         }
 
         logger.info("address1 = $address1")
@@ -43,7 +42,7 @@ fun main() {
 
         // SELECT
         val address2 = db.runQuery {
-            EntityDsl.from(a).first { a.street eq "street B" }
+            EntityDsl.from(a).where { a.street eq "street B" }.first()
         }
 
         logger.info("address2 = $address2")

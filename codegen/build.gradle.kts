@@ -1,4 +1,4 @@
-import org.komapper.core.Database
+import org.komapper.jdbc.Database
 
 plugins {
     application
@@ -22,7 +22,7 @@ idea.module {
 }
 
 dependencies {
-    implementation("org.komapper:komapper-starter:$komapperVersion")
+    implementation("org.komapper:komapper-starter-jdbc:$komapperVersion")
     ksp("org.komapper:komapper-processor:$komapperVersion")
 }
 
