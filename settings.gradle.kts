@@ -16,5 +16,7 @@ pluginManagement {
 
 rootProject.name = "komapper-examples"
 include("codegen")
-include("console")
-include("spring-boot")
+include("console-jdbc")
+include("console-r2dbc")
+include("spring-boot-jdbc")
+include("spring-boot-r2dbc")
