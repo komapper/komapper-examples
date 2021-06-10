@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("com.diffplug.spotless") version "5.12.5"
+    id("com.diffplug.spotless") version "5.13.0"
 }
 
 val ktlintVersion = "0.41.0"
