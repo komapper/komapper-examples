@@ -2,8 +2,8 @@ package org.komapper.example
 
 import org.komapper.core.dsl.EntityDsl
 import org.komapper.core.dsl.SchemaDsl
-import org.komapper.jdbc.Database
-import org.komapper.tx.jdbc.transaction
+import org.komapper.jdbc.JdbcDatabase
+import org.komapper.tx.jdbc.withTransaction
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -11,13 +11,13 @@ val logger: Logger = LoggerFactory.getLogger("console")
 
 fun main() {
     // create a Database instance
-    val db = Database.create("jdbc:h2:mem:example-console;DB_CLOSE_DELAY=-1")
+    val db = JdbcDatabase.create("jdbc:h2:mem:example-console;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
     val a = AddressDef.meta
 
     // execute simple CRUD operations in a transaction
-    db.transaction {
+    db.withTransaction {
         // create a schema
         db.runQuery {
             SchemaDsl.create(a)

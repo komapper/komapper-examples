@@ -1,4 +1,4 @@
-import org.komapper.jdbc.Database
+import org.komapper.jdbc.JdbcDatabase
 
 plugins {
     application
@@ -30,13 +30,13 @@ komapper {
     generators {
         val basePackage = "org.komapper.example"
         register("mysql") {
-            database.set(Database.create("jdbc:mysql://localhost/example", "root", "example"))
+            database.set(JdbcDatabase.create("jdbc:mysql://localhost/example", "root", "example"))
             packageName.set("$basePackage.mysql")
             overwriteEntities.set(true)
             overwriteDefinitions.set(true)
         }
         register("postgres") {
-            database.set(Database.create("jdbc:postgresql://localhost/example", "postgres", "example"))
+            database.set(JdbcDatabase.create("jdbc:postgresql://localhost/example", "postgres", "example"))
             packageName.set("$basePackage.postgres")
             overwriteEntities.set(true)
             overwriteDefinitions.set(true)
