@@ -1,17 +1,17 @@
 package org.komapper.example
 
-import org.komapper.annotation.KmAutoIncrement
-import org.komapper.annotation.KmEntityDef
-import org.komapper.annotation.KmId
+import org.komapper.annotation.KomapperAutoIncrement
+import org.komapper.annotation.KomapperEntityDef
+import org.komapper.annotation.KomapperId
 
 data class Message(
     val id: Int? = null,
     val text: String
 )
 
-@KmEntityDef(Message::class)
+@KomapperEntityDef(Message::class)
 data class MessageDef(
-    @KmId @KmAutoIncrement
+    @KomapperId @KomapperAutoIncrement
     val id: Nothing,
     val text: Nothing
 ) {
