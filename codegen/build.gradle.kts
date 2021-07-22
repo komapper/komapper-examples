@@ -1,5 +1,16 @@
 import org.komapper.jdbc.JdbcDatabase
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(platform("org.testcontainers:testcontainers-bom:1.16.0"))
+        classpath("org.testcontainers:mysql")
+        classpath("org.testcontainers:postgresql")
+    }
+}
+
 plugins {
     application
     idea
@@ -30,16 +41,38 @@ komapper {
     generators {
         val basePackage = "org.komapper.example"
         register("mysql") {
-            database.set(JdbcDatabase.create("jdbc:mysql://localhost/example", "root", "example"))
+            val initScript = file("src/main/resources/init_mysql.sql")
+            database.set(
+                JdbcDatabase.create(
+                    url = "jdbc:tc:mysql:8.0.25:///test?TC_INITSCRIPT=file:${initScript.absolutePath}",
+                    user = "test",
+                    password = "test"
+                )
+            )
             packageName.set("$basePackage.mysql")
             overwriteEntities.set(true)
             overwriteDefinitions.set(true)
         }
         register("postgres") {
-            database.set(JdbcDatabase.create("jdbc:postgresql://localhost/example", "postgres", "example"))
+            val initScript = file("src/main/resources/init_postgresql.sql")
+            database.set(
+                JdbcDatabase.create(
+                    url = "jdbc:tc:postgresql:13.3:///test?TC_INITSCRIPT=file:${initScript.absolutePath}",
+                    user = "test",
+                    password = "test"
+                )
+            )
             packageName.set("$basePackage.postgres")
             overwriteEntities.set(true)
             overwriteDefinitions.set(true)
+        }
+    }
+}
+
+tasks {
+    named("clean") {
+        doLast {
+            delete("src/main/kotlin")
         }
     }
 }

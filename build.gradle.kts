@@ -38,10 +38,12 @@ subprojects {
         "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.7.2")
     }
 
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-        kotlin {
-            targetExclude("build/**")
-            ktlint(ktlintVersion)
+    if (project.name != "codegen") {
+        configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+            kotlin {
+                targetExclude("build/**")
+                ktlint(ktlintVersion)
+            }
         }
     }
 }
