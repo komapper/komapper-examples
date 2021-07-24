@@ -11,7 +11,7 @@ val logger: Logger = LoggerFactory.getLogger("console")
 
 fun main() {
     // create a Database instance
-    val db = JdbcDatabase.create("jdbc:h2:mem:example-console;DB_CLOSE_DELAY=-1")
+    val db = JdbcDatabase.create("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
     val a = AddressDef.meta
