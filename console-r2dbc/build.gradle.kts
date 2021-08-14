@@ -21,7 +21,6 @@ idea.module {
 dependencies {
     implementation("org.komapper:komapper-starter-r2dbc:$komapperVersion")
     implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
-    implementation("org.slf4j:slf4j-api:1.7.32")
     ksp("org.komapper:komapper-processor:$komapperVersion")
 }
 
