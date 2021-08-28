@@ -18,7 +18,7 @@ class Application(private val database: R2dbcDatabase) {
 
     @RequestMapping("/")
     suspend fun list(): Flow<Message> {
-        return database.runFlowableQuery {
+        return database.flow {
             val m = MessageDef.meta
             SqlDsl.from(m).orderBy(m.id)
         }

@@ -54,7 +54,7 @@ fun main() = runBlocking {
         check(address1.version + 1 == address2.version)
 
         // SELECT ALL as Flow
-        val flow = db.runFlowableQuery {
+        val flow = db.flow {
             SqlDsl.from(a)
         }
         val list = flow.toList()
