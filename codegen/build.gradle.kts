@@ -13,23 +13,16 @@ buildscript {
 
 plugins {
     application
-    idea
     id("com.google.devtools.ksp")
     id("org.komapper.gradle")
 }
 
 val komapperVersion: String by project
 
-sourceSets {
-    main {
-        java {
-            srcDir("build/generated/ksp/main/kotlin")
-        }
+kotlin {
+    sourceSets.main {
+        kotlin.srcDir("build/generated/ksp/main/kotlin")
     }
-}
-
-idea.module {
-    generatedSourceDirs.add(file("build/generated/ksp/main/kotlin"))
 }
 
 dependencies {

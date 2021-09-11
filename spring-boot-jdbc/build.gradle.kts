@@ -1,5 +1,4 @@
 plugins {
-    idea
     id("org.springframework.boot") version "2.5.4"
     id("com.google.devtools.ksp")
     kotlin("plugin.allopen")
@@ -9,16 +8,10 @@ apply(plugin = "io.spring.dependency-management")
 
 val komapperVersion: String by project
 
-sourceSets {
-    main {
-        java {
-            srcDir("build/generated/ksp/main/kotlin")
-        }
+kotlin {
+    sourceSets.main {
+        kotlin.srcDir("build/generated/ksp/main/kotlin")
     }
-}
-
-idea.module {
-    generatedSourceDirs.add(file("build/generated/ksp/main/kotlin"))
 }
 
 dependencies {
