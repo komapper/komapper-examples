@@ -5,6 +5,10 @@ plugins {
 
 val ktlintVersion = "0.41.0"
 
+val springBootProjects = subprojects.filter {
+    it.name.startsWith("spring-boot")
+}
+
 allprojects {
     apply(plugin = "com.diffplug.spotless")
 
@@ -33,8 +37,10 @@ subprojects {
     }
 
     dependencies {
-        "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.7.2")
-        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+        if (project !in springBootProjects) {
+            "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.8.1")
+            "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+        }
     }
 
     if (project.name != "codegen") {
