@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(platform("org.testcontainers:testcontainers-bom:1.16.0"))
+        classpath(platform("org.testcontainers:testcontainers-bom:1.16.1"))
         classpath("org.testcontainers:mysql")
         classpath("org.testcontainers:postgresql")
     }
