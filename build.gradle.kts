@@ -1,4 +1,5 @@
 plugins {
+    java
     kotlin("jvm")
     id("com.diffplug.spotless") version "6.0.0"
 }
@@ -12,7 +13,11 @@ val springBootProjects = subprojects.filter {
 allprojects {
     apply(plugin = "com.diffplug.spotless")
 
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    repositories {
+        mavenCentral()
+    }
+
+    spotless {
         kotlinGradle {
             ktlint(ktlintVersion)
         }
@@ -23,32 +28,28 @@ allprojects {
             dependsOn(spotlessApply)
         }
     }
-
-    repositories {
-        mavenCentral()
-    }
 }
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-
     dependencies {
         if (project !in springBootProjects) {
-            "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.8.1")
-            "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+            testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
         }
     }
 
     if (project.name != "codegen") {
-        configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        spotless {
             kotlin {
                 targetExclude("build/**")
                 ktlint(ktlintVersion)
             }
         }
+    }
+
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
     }
 }
