@@ -4,7 +4,7 @@ plugins {
     id("com.diffplug.spotless") version "6.0.0"
 }
 
-val ktlintVersion = "0.41.0"
+val ktlintVersion: String by project
 
 val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot")
