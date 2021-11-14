@@ -46,7 +46,7 @@ komapper {
             overwriteEntities.set(true)
             overwriteDefinitions.set(true)
         }
-        register("postgres") {
+        register("postgresql") {
             val initScript = file("src/main/resources/init_postgresql.sql")
             database.set(
                 JdbcDatabase.create(
