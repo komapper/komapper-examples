@@ -1,7 +1,8 @@
 package org.komapper.example
 
-import org.komapper.core.dsl.EntityDsl
+import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.SchemaDsl
+import org.komapper.core.dsl.query.first
 import org.komapper.jdbc.JdbcDatabase
 import org.komapper.tx.jdbc.withTransaction
 import org.slf4j.Logger
@@ -25,24 +26,24 @@ fun main() {
 
         // INSERT
         val newAddress = db.runQuery {
-            EntityDsl.insert(a).single(Address(street = "street A"))
+            QueryDsl.insert(a).single(Address(street = "street A"))
         }
 
         // SELECT
         val address1 = db.runQuery {
-            EntityDsl.from(a).where { a.id eq newAddress.id }.first()
+            QueryDsl.from(a).where { a.id eq newAddress.id }.first()
         }
 
         logger.info("address1 = $address1")
 
         // UPDATE
         db.runQuery {
-            EntityDsl.update(a).single(address1.copy(street = "street B"))
+            QueryDsl.update(a).single(address1.copy(street = "street B"))
         }
 
         // SELECT
         val address2 = db.runQuery {
-            EntityDsl.from(a).where { a.street eq "street B" }.first()
+            QueryDsl.from(a).where { a.street eq "street B" }.first()
         }
 
         logger.info("address2 = $address2")
@@ -52,12 +53,12 @@ fun main() {
 
         // DELETE
         db.runQuery {
-            EntityDsl.delete(a).single(address2)
+            QueryDsl.delete(a).single(address2)
         }
 
         // SELECT
         val addressList = db.runQuery {
-            EntityDsl.from(a).orderBy(a.id)
+            QueryDsl.from(a).orderBy(a.id)
         }
 
         logger.info("addressList = $addressList")
