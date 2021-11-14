@@ -1,6 +1,6 @@
 package org.komapper.example
 
-import org.komapper.core.dsl.EntityDsl
+import org.komapper.core.dsl.QueryDsl
 import org.komapper.jdbc.JdbcDatabase
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -18,7 +18,7 @@ class Application(private val database: JdbcDatabase) {
     fun list(): List<Message> {
         return database.runQuery {
             val m = MessageDef.meta
-            EntityDsl.from(m).orderBy(m.id)
+            QueryDsl.from(m).orderBy(m.id)
         }
     }
 
@@ -27,7 +27,7 @@ class Application(private val database: JdbcDatabase) {
         val message = Message(text = text)
         return database.runQuery {
             val m = MessageDef.meta
-            EntityDsl.insert(m).single(message)
+            QueryDsl.insert(m).single(message)
         }
     }
 }

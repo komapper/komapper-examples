@@ -1,8 +1,7 @@
 package org.komapper.example
 
 import kotlinx.coroutines.flow.Flow
-import org.komapper.core.dsl.EntityDsl
-import org.komapper.core.dsl.SqlDsl
+import org.komapper.core.dsl.QueryDsl
 import org.komapper.r2dbc.R2dbcDatabase
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -20,7 +19,7 @@ class Application(private val database: R2dbcDatabase) {
     suspend fun list(): Flow<Message> {
         return database.flow {
             val m = MessageDef.meta
-            SqlDsl.from(m).orderBy(m.id)
+            QueryDsl.from(m).orderBy(m.id)
         }
     }
 
@@ -29,7 +28,7 @@ class Application(private val database: R2dbcDatabase) {
         val message = Message(text = text)
         return database.runQuery {
             val m = MessageDef.meta
-            EntityDsl.insert(m).single(message)
+            QueryDsl.insert(m).single(message)
         }
     }
 }
