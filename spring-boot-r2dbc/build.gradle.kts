@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "2.5.7"
+    id("org.springframework.boot") version "2.6.0"
     id("com.google.devtools.ksp")
     kotlin("plugin.allopen")
 }
