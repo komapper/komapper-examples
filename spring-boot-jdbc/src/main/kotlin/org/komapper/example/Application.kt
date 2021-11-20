@@ -1,5 +1,6 @@
 package org.komapper.example
 
+import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.jdbc.JdbcDatabase
 import org.springframework.boot.SpringApplication
@@ -17,7 +18,7 @@ class Application(private val database: JdbcDatabase) {
     @RequestMapping("/")
     fun list(): List<Message> {
         return database.runQuery {
-            val m = MessageDef.meta
+            val m = Meta.message
             QueryDsl.from(m).orderBy(m.id)
         }
     }
@@ -26,7 +27,7 @@ class Application(private val database: JdbcDatabase) {
     fun add(@RequestParam text: String): Message {
         val message = Message(text = text)
         return database.runQuery {
-            val m = MessageDef.meta
+            val m = Meta.message
             QueryDsl.insert(m).single(message)
         }
     }

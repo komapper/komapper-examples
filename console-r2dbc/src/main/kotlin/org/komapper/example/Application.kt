@@ -2,6 +2,7 @@ package org.komapper.example
 
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
+import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.SchemaDsl
 import org.komapper.core.dsl.query.first
@@ -17,7 +18,7 @@ fun main() = runBlocking {
     val db = R2dbcDatabase.create("r2dbc:h2:mem:///example;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
-    val a = AddressDef.meta
+    val a = Meta.address
 
     // execute simple CRUD operations in a transaction
     db.withTransaction {

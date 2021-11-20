@@ -1,5 +1,6 @@
 package org.komapper.example
 
+import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.SchemaDsl
 import org.komapper.core.dsl.query.first
@@ -15,7 +16,7 @@ fun main() {
     val db = JdbcDatabase.create("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
-    val a = AddressDef.meta
+    val a = Meta.address
 
     // execute simple CRUD operations in a transaction
     db.withTransaction {

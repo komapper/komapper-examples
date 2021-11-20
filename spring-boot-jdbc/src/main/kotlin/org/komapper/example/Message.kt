@@ -13,7 +13,4 @@ data class Message(
 data class MessageDef(
     @KomapperId @KomapperAutoIncrement
     val id: Nothing,
-    val text: Nothing
-) {
-    companion object
-}
+)
