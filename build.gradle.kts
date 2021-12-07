@@ -11,6 +11,7 @@ val springBootProjects = subprojects.filter {
 }
 
 allprojects {
+    apply(plugin = "base")
     apply(plugin = "com.diffplug.spotless")
 
     repositories {
