@@ -127,7 +127,7 @@ class ExampleRepository(private val db: JdbcDatabase) {
     }
 
     fun upsertAddress(address: Address): Address {
-        val query = QueryDsl.insert(a).onDuplicateKeyUpdate().single(address)
+        val query = QueryDsl.insert(a).onDuplicateKeyUpdate().executeAndGet(address)
         return db.runQuery { query }
     }
 }
