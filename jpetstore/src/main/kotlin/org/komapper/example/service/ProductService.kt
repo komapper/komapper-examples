@@ -1,9 +1,9 @@
 package org.komapper.example.service
 
-import org.springframework.stereotype.Service
 import org.komapper.example.entity.Product
 import org.komapper.example.model.ProductAggregate
 import org.komapper.example.repository.ProductRepository
+import org.springframework.stereotype.Service
 import java.util.StringTokenizer
 
 @Service

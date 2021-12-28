@@ -1,6 +1,5 @@
 package org.komapper.example.service
 
-import org.springframework.stereotype.Service
 import org.komapper.example.entity.LineItem
 import org.komapper.example.entity.Order
 import org.komapper.example.entity.OrderStatus
@@ -8,6 +7,7 @@ import org.komapper.example.model.Cart
 import org.komapper.example.model.OrderAggregate
 import org.komapper.example.repository.AccountRepository
 import org.komapper.example.repository.OrderRepository
+import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service

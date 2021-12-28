@@ -1,11 +1,11 @@
 package org.komapper.example.model
 
-import org.springframework.context.annotation.Scope
-import org.springframework.context.annotation.ScopedProxyMode
-import org.springframework.stereotype.Component
 import org.komapper.example.entity.Inventory
 import org.komapper.example.entity.Item
 import org.komapper.example.entity.Product
+import org.springframework.context.annotation.Scope
+import org.springframework.context.annotation.ScopedProxyMode
+import org.springframework.stereotype.Component
 import java.io.Serializable
 import java.math.BigDecimal
 

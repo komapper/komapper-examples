@@ -1,0 +1,68 @@
+plugins {
+    application
+    id("com.google.devtools.ksp")
+}
+
+// val komapperVersion: String by project
+val komapperVersion = "0.24.1-SNAPSHOT"
+
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
+}
+
+repositories {
+    mavenCentral()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/ktor/eap")
+}
+
+dependencies {
+    implementation("org.komapper:komapper-annotation:$komapperVersion")
+    implementation("org.komapper:komapper-r2dbc:$komapperVersion")
+    implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
+    implementation("org.komapper:komapper-tx-r2dbc:$komapperVersion")
+    implementation("org.komapper:komapper-slf4j:$komapperVersion")
+    ksp("org.komapper:komapper-processor:$komapperVersion")
+
+    implementation("io.ktor:ktor-server-netty:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-freemarker:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-locations:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-conditional-headers:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-default-headers:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-partial-content:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-call-logging:2.0.0-eap-256")
+    implementation("org.freemarker:freemarker:2.3.31")
+    implementation("no.api.freemarker:freemarker-java8:2.0.0")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.10")
+
+    testImplementation("io.ktor:ktor-server-test-host:2.0.0-eap-256")
+    testImplementation("io.mockk:mockk:1.10.4")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+}
+
+sourceSets {
+    main {
+        resources.srcDir("resources")
+    }
+}
+
+kotlin {
+    sourceSets.main {
+        kotlin.srcDirs("src", "build/generated/ksp/main/kotlin")
+    }
+    sourceSets.test {
+        kotlin.srcDirs("test")
+    }
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+ksp {
+    arg("komapper.namingStrategy", "lower_snake_case")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+}

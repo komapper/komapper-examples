@@ -1,5 +1,11 @@
 package org.komapper.example.web.controller
 
+import org.komapper.example.entity.Account
+import org.komapper.example.entity.Profile
+import org.komapper.example.entity.SignOn
+import org.komapper.example.model.AccountAggregate
+import org.komapper.example.service.AccountService
+import org.komapper.example.web.Constants
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -13,12 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.komapper.example.entity.Account
-import org.komapper.example.entity.Profile
-import org.komapper.example.entity.SignOn
-import org.komapper.example.model.AccountAggregate
-import org.komapper.example.service.AccountService
-import org.komapper.example.web.Constants
 
 @Controller
 @RequestMapping("/account")

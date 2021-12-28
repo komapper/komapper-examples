@@ -1,15 +1,15 @@
 package org.komapper.example.service
 
-import org.springframework.security.core.userdetails.User
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.core.userdetails.UsernameNotFoundException
-import org.springframework.stereotype.Service
 import org.komapper.example.entity.Account
 import org.komapper.example.entity.Profile
 import org.komapper.example.entity.SignOn
 import org.komapper.example.model.AccountAggregate
 import org.komapper.example.repository.AccountRepository
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.stereotype.Service
 
 @Service
 class AccountService(private val accountRepository: AccountRepository) : UserDetailsService {

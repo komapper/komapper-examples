@@ -2,12 +2,12 @@ package org.komapper.example.repository
 
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
-import org.komapper.jdbc.JdbcDatabase
-import org.springframework.stereotype.Repository
 import org.komapper.example.entity.inventory
 import org.komapper.example.entity.item
 import org.komapper.example.entity.product
 import org.komapper.example.model.ItemAggregate
+import org.komapper.jdbc.JdbcDatabase
+import org.springframework.stereotype.Repository
 
 @Repository
 class ItemRepository(private val db: JdbcDatabase) {

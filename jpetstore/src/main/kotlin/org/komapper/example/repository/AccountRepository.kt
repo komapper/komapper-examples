@@ -3,8 +3,6 @@ package org.komapper.example.repository
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.query.firstOrNull
-import org.komapper.jdbc.JdbcDatabase
-import org.springframework.stereotype.Repository
 import org.komapper.example.entity.Account
 import org.komapper.example.entity.Profile
 import org.komapper.example.entity.SignOn
@@ -13,6 +11,8 @@ import org.komapper.example.entity.bannerData
 import org.komapper.example.entity.profile
 import org.komapper.example.entity.signOn
 import org.komapper.example.model.AccountAggregate
+import org.komapper.jdbc.JdbcDatabase
+import org.springframework.stereotype.Repository
 
 @Repository
 class AccountRepository(private val db: JdbcDatabase) {

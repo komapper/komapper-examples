@@ -3,12 +3,12 @@ package org.komapper.example.repository
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.operator.lower
-import org.komapper.jdbc.JdbcDatabase
-import org.springframework.stereotype.Repository
 import org.komapper.example.entity.Product
 import org.komapper.example.entity.item
 import org.komapper.example.entity.product
 import org.komapper.example.model.ProductAggregate
+import org.komapper.jdbc.JdbcDatabase
+import org.springframework.stereotype.Repository
 
 @Repository
 class ProductRepository(private val db: JdbcDatabase) {

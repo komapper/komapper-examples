@@ -3,8 +3,6 @@ package org.komapper.example.repository
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.operator.asc
-import org.komapper.jdbc.JdbcDatabase
-import org.springframework.stereotype.Repository
 import org.komapper.example.entity.LineItem
 import org.komapper.example.entity.Order
 import org.komapper.example.entity.OrderStatus
@@ -14,6 +12,8 @@ import org.komapper.example.entity.order
 import org.komapper.example.entity.orderStatus
 import org.komapper.example.entity.product
 import org.komapper.example.model.OrderAggregate
+import org.komapper.jdbc.JdbcDatabase
+import org.springframework.stereotype.Repository
 
 @Repository
 class OrderRepository(private val db: JdbcDatabase) {
