@@ -54,9 +54,7 @@ class AccountRepository(private val db: JdbcDatabase) {
     }
 
     fun insertSignOn(signOn: SignOn) {
-        val query = QueryDsl.insert(s)
-            .single(signOn)
-            .options { it.copy(suppressLogging = true) }
+        val query = QueryDsl.insert(s).single(signOn)
         db.runQuery(query)
     }
 

@@ -135,5 +135,5 @@ data class ProfileDef(
 @KomapperTable("SIGNON")
 data class SignOnDef(
     @KomapperId @KomapperColumn("USERNAME") val username: Nothing,
-    @KomapperColumn("PASSWORD") val password: Nothing,
+    @KomapperColumn("PASSWORD", masking = true) val password: Nothing,
 )
