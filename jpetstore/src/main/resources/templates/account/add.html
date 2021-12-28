@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+  <head>
+    <title>Add Account</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <div id="Catalog">
+        <form method="post" th:action="@{/account/add}" th:object="${accountAddForm}">
+          <div th:if="${#fields.hasErrors('*')}"
+              class="alert alert-error">
+            Validation error
+          </div>
+          <h3>User Information</h3>
+          <table>
+            <tr>
+              <td>User ID:</td>
+              <td>
+                <input type="text" th:field="*{username}" th:errorclass="fieldError"/>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span>
+              </td>
+            </tr>
+            <tr>
+              <td>New password:</td>
+              <td>
+                  <input type="password" th:field="*{password}" th:errorclass="fieldError"/>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
+              </td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td>
+                  <input type="password" th:field="*{repeatedPassword}" th:errorclass="fieldError"/>
+                <span th:if="${#fields.hasErrors('repeatedPassword')}" th:errors="*{repeatedPassword}">Error</span>
+                </td>
+            </tr>
+          </table>
+          <section th:replace="account/fields :: info"></section>
+          <input type="submit" name="newAccount" value="Create Account"/>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

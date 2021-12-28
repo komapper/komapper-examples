@@ -7,7 +7,7 @@ plugins {
 val ktlintVersion: String by project
 
 val springBootProjects = subprojects.filter {
-    it.name.startsWith("spring-boot")
+    it.name.startsWith("spring-boot") || it.name == "jpetstore"
 }
 
 allprojects {

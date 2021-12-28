@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+  <head>
+    <title>Account Fields</title>
+  </head>
+  <body>
+    <section th:fragment="info">
+      <h3>Account Information</h3>
+      
+      <table>
+        <tr>
+          <td>First name:</td><td><input type="text" th:field="*{firstName}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Last name:</td><td><input type="text" th:field="*{lastName}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Email:</td><td><input type="text" size="40" th:field="*{email}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Phone:</td><td><input type="text" th:field="*{phone}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Address 1:</td><td><input type="text" size="40" th:field="*{address1}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('address1')}" th:errors="*{address1}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Address 2:</td><td><input type="text" size="40" th:field="*{address2}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('address2')}" th:errors="*{address2}">Error</span>
+          </td>
+        </tr><tr>
+          <td>City:</td><td><input type="text" th:field="*{city}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Error</span>
+          </td>
+        </tr><tr>
+          <td>State:</td><td><input type="text" size="4" th:field="*{state}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Zip:</td><td><input type="text" size="10" th:field="*{zip}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}">Error</span>
+          </td>
+        </tr><tr>
+          <td>Country:</td><td><input type="text" size="15" th:field="*{country}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Error</span>
+          </td>
+        </tr>
+      </table>
+      <h3>Profile Information</h3>
+      <table>
+        <tr>
+          <td>Language Preference:</td><td>
+          <select th:field="*{languagePreference}">
+            <option th:each="lang : ${languageList}" th:value="${lang}" th:text="${lang}"></option>
+          </select></td>
+        </tr><tr>
+          <td>Favourite Category:</td><td>
+          <select th:field="*{favouriteCategoryId}">
+            <option th:each ="category : ${categoryList}" th:value="${category}" th:text="${category}"></option>
+          </select></td>
+        </tr><tr>
+          <td>Enable MyList</td><td><input type="checkbox" th:field="*{listOption}"/></td>
+        </tr><tr>
+          <td>Enable MyBanner</td><td><input type="checkbox" th:field="*{bannerOption}"/></td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>
