@@ -6,8 +6,7 @@ plugins {
 
 apply(plugin = "io.spring.dependency-management")
 
-// val komapperVersion: String by project
-val komapperVersion = "0.24.1-SNAPSHOT"
+val komapperVersion: String by project
 
 kotlin {
     sourceSets.main {

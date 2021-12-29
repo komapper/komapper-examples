@@ -3,8 +3,7 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
-// val komapperVersion: String by project
-val komapperVersion = "0.24.1-SNAPSHOT"
+val komapperVersion: String by project
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
