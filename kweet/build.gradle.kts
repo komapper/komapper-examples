@@ -15,11 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.komapper:komapper-annotation:$komapperVersion")
-    implementation("org.komapper:komapper-r2dbc:$komapperVersion")
+    implementation("org.komapper:komapper-starter-r2dbc:$komapperVersion")
     implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
-    implementation("org.komapper:komapper-tx-r2dbc:$komapperVersion")
-    implementation("org.komapper:komapper-slf4j:$komapperVersion")
     ksp("org.komapper:komapper-processor:$komapperVersion")
 
     implementation("io.ktor:ktor-server-netty:2.0.0-eap-256")
