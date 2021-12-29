@@ -4,7 +4,7 @@ pluginManagement {
     val kspVersion: String by settings
     plugins {
         id("org.jetbrains.kotlin.jvm") version kotlinVersion
-        id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
+        id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
         id("org.komapper.gradle") version komapperVersion
         id("com.google.devtools.ksp") version kspVersion
     }
