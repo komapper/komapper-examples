@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+  <head>
+    <title>Sign in</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <div id="Catalog">
+        <form method="post" th:action="@{/signin}">
+          <div th:if="${param.error}">
+            Invalid username and password.
+          </div>
+          <div th:if="${param.logout}">
+            You have been logged out.
+          </div>
+          <p>Please enter your username and password.</p>
+          <table>
+            <tr>
+              <td>Username:</td>
+              <td><input type="text" name="username" value="doma" /></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input type="password" name="password" value="doma" /></td>
+            </tr>
+            <tr>
+              <td>Remember Me:</td>
+              <td><input type="checkbox" name="remember-me" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="submit" name="signin" value="Singin" /></td>
+            </tr>
+          </table>
+        </form>
+        <p />
+        <div>
+          Need a username and password?
+          <a th:href="@{/account/add}">Register Now!</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

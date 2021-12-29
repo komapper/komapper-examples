@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+  <head>
+    <title>Order History List</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <div id="Catalog">
+        <h2>My Orders</h2>
+        <table>
+          <tr><th>Order ID</th>  <th>Date</th>  <th>Total Price</th></tr>
+          <tr th:each="order : ${orderList}">
+            <td><a th:href="@{|history/${order.orderId}|}" th:text="${order.orderId}"></a></td>
+            <td th:text="${{order.orderDate}}"></td>
+            <td th:text="${{order.totalPrice}}"></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>

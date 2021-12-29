@@ -1,7 +1,7 @@
 plugins {
     id("org.springframework.boot") version "2.6.2"
     id("com.google.devtools.ksp")
-    kotlin("plugin.allopen")
+    kotlin("plugin.spring")
 }
 
 apply(plugin = "io.spring.dependency-management")
@@ -21,11 +21,6 @@ dependencies {
     implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
     ksp("org.komapper:komapper-processor:$komapperVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
-allOpen {
-    annotation("org.springframework.context.annotation.Configuration")
-    annotation("org.springframework.transaction.annotation.Transactional")
 }
 
 springBoot {
