@@ -22,8 +22,11 @@ allprojects {
     }
 
     repositories {
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
+        maven { url = uri("https://repo.spring.io/release") }
+        maven { url = uri("https://repo.spring.io/milestone") }
+        maven { url = uri("https://repo.spring.io/snapshot") }
     }
 
     tasks {
@@ -51,6 +54,12 @@ subprojects {
             testImplementation(kotlin("test"))
             testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
             testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+        }
+    }
+
+    kotlin {
+        jvmToolchain {
+            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
         }
     }
 

@@ -36,12 +36,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
-sourceSets {
-    main {
-        resources.srcDir("resources")
-    }
-}
-
 idea {
     module {
         sourceDirs = sourceDirs + file("build/generated/ksp/main/kotlin")
@@ -59,6 +53,12 @@ kotlin {
     }
     jvmToolchain {
         (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+sourceSets {
+    main {
+        resources.srcDir("resources")
     }
 }
 
