@@ -5,5 +5,5 @@ import org.komapper.example.entity.Product
 
 class ProductAggregate(
     val product: Product,
-    val itemList: List<Item>,
+    val itemSet: Set<Item>,
 )

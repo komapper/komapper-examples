@@ -1,10 +1,8 @@
 plugins {
     java
     kotlin("jvm")
-    id("com.diffplug.spotless") version "6.1.2"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
-
-val ktlintVersion: String by project
 
 val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot") || it.name == "jpetstore"
@@ -12,22 +10,37 @@ val springBootProjects = subprojects.filter {
 
 allprojects {
     apply(plugin = "base")
-    apply(plugin = "com.diffplug.spotless")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
-
-    spotless {
-        kotlinGradle {
-            ktlint(ktlintVersion)
+    ktlint {
+        filter {
+            exclude("build/**")
+            if (project.name == "codegen") {
+                exclude("src/**")
+            }
         }
     }
 
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url = uri("https://repo.spring.io/release") }
+        maven { url = uri("https://repo.spring.io/milestone") }
+        maven { url = uri("https://repo.spring.io/snapshot") }
+    }
+
     tasks {
+        val pairs = listOf(
+            "ktlintKotlinScriptCheck" to "ktlintKotlinScriptFormat",
+            "ktlintMainSourceSetCheck" to "ktlintMainSourceSetFormat",
+            "ktlintTestSourceSetCheck" to "ktlintTestSourceSetFormat",
+        )
+        for ((checkTask, formatTask) in pairs) {
+            findByName(checkTask)?.mustRunAfter(formatTask)
+        }
+
         build {
-            dependsOn(spotlessApply)
+            dependsOn("ktlintFormat")
         }
     }
 }
@@ -44,12 +57,9 @@ subprojects {
         }
     }
 
-    if (project.name != "codegen") {
-        spotless {
-            kotlin {
-                targetExclude("build/**")
-                ktlint(ktlintVersion)
-            }
+    kotlin {
+        jvmToolchain {
+            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
         }
     }
 

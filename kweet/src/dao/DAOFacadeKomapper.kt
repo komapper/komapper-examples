@@ -32,7 +32,7 @@ class DAOFacadeKomapper(
     }
 
     override suspend fun countReplies(id: Int): Int {
-        val query = QueryDsl.from(k).where { k.replyTo eq id }.selectNotNull(count(k.id)).first()
+        val query = QueryDsl.from(k).where { k.replyTo eq id }.selectNotNull(count(k.id))
         return db.runQuery(query).toInt()
     }
 

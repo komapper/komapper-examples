@@ -1,5 +1,6 @@
 plugins {
     application
+    idea
     id("com.google.devtools.ksp")
 }
 
@@ -35,21 +36,29 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
-sourceSets {
-    main {
-        resources.srcDir("resources")
+idea {
+    module {
+        sourceDirs = sourceDirs + file("build/generated/ksp/main/kotlin")
+        testSourceDirs = testSourceDirs + file("build/generated/ksp/test/kotlin")
+        generatedSourceDirs = generatedSourceDirs + file("build/generated/ksp/main/kotlin") + file("build/generated/ksp/test/kotlin")
     }
 }
 
 kotlin {
     sourceSets.main {
-        kotlin.srcDirs("src", "build/generated/ksp/main/kotlin")
+        kotlin.srcDirs("src")
     }
     sourceSets.test {
         kotlin.srcDirs("test")
     }
     jvmToolchain {
         (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+sourceSets {
+    main {
+        resources.srcDir("resources")
     }
 }
 

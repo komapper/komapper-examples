@@ -37,9 +37,9 @@ class AccountRepository(private val db: JdbcDatabase) {
             .includeAll()
         val store = db.runQuery(query)
         return AccountAggregate(
-            account = store.list(a).single(),
-            profile = store.list(p).single(),
-            signOn = store.list(s).single(),
+            account = store[a].single(),
+            profile = store[p].single(),
+            signOn = store[s].single(),
         )
     }
 

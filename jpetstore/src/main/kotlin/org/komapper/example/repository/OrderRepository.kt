@@ -37,11 +37,11 @@ class OrderRepository(private val db: JdbcDatabase) {
             .where { o.orderId eq orderId }
             .includeAll()
         val store = db.runQuery(query)
-        return store.list(o).firstOrNull()?.let {
+        return store[o].firstOrNull()?.let {
             OrderAggregate(
                 order = it,
-                orderStatus = store.list(os).first(),
-                lineItemList = store.list(li),
+                orderStatus = store[os].first(),
+                lineItemSet = store[li],
                 lineItem_product = store.oneToOne(li, p)
             )
         }

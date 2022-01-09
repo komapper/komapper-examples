@@ -19,7 +19,7 @@ class ProductController(private val productService: ProductService) {
         val productAggregate = productService.getProductAggregate(productId)
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "productId=$productId not found")
         model.addAttribute("product", productAggregate.product)
-        model.addAttribute("itemList", productAggregate.itemList)
+        model.addAttribute("itemList", productAggregate.itemSet)
         return "product/list"
     }
 }

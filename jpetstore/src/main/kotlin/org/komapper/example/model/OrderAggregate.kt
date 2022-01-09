@@ -8,6 +8,6 @@ import org.komapper.example.entity.Product
 class OrderAggregate(
     val order: Order,
     val orderStatus: OrderStatus,
-    val lineItemList: List<LineItem>,
+    val lineItemSet: Set<LineItem>,
     val lineItem_product: Map<LineItem, Product?>,
 )

@@ -1,4 +1,5 @@
 plugins {
+    idea
     id("org.springframework.boot") version "2.6.2"
     id("com.google.devtools.ksp")
     kotlin("plugin.spring")
@@ -8,12 +9,11 @@ apply(plugin = "io.spring.dependency-management")
 
 val komapperVersion: String by project
 
-kotlin {
-    sourceSets.main {
-        kotlin.srcDirs("build/generated/ksp/main/kotlin")
-    }
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+idea {
+    module {
+        sourceDirs = sourceDirs + file("build/generated/ksp/main/kotlin")
+        testSourceDirs = testSourceDirs + file("build/generated/ksp/test/kotlin")
+        generatedSourceDirs = generatedSourceDirs + file("build/generated/ksp/main/kotlin") + file("build/generated/ksp/test/kotlin")
     }
 }
 
@@ -29,6 +29,7 @@ repositories {
 
 dependencies {
     implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
+    implementation("org.komapper:komapper-sqlcommenter:$komapperVersion")
     implementation("org.komapper:komapper-dialect-h2-jdbc:$komapperVersion")
     ksp("org.komapper:komapper-processor:$komapperVersion")
 
