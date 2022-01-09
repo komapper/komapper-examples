@@ -1,10 +1,8 @@
 plugins {
     java
     kotlin("jvm")
-    id("com.diffplug.spotless") version "6.1.2"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
-
-val ktlintVersion: String by project
 
 val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot") || it.name == "jpetstore"
@@ -12,22 +10,34 @@ val springBootProjects = subprojects.filter {
 
 allprojects {
     apply(plugin = "base")
-    apply(plugin = "com.diffplug.spotless")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    ktlint {
+        filter {
+            exclude("build/**")
+            if (project.name == "codegen") {
+                exclude("src/**")
+            }
+        }
+    }
 
     repositories {
         mavenCentral()
         mavenLocal()
     }
 
-    spotless {
-        kotlinGradle {
-            ktlint(ktlintVersion)
-        }
-    }
-
     tasks {
+        val pairs = listOf(
+            "ktlintKotlinScriptCheck" to "ktlintKotlinScriptFormat",
+            "ktlintMainSourceSetCheck" to "ktlintMainSourceSetFormat",
+            "ktlintTestSourceSetCheck" to "ktlintTestSourceSetFormat",
+        )
+        for ((checkTask, formatTask) in pairs) {
+            findByName(checkTask)?.mustRunAfter(formatTask)
+        }
+
         build {
-            dependsOn(spotlessApply)
+            dependsOn("ktlintFormat")
         }
     }
 }
@@ -41,15 +51,6 @@ subprojects {
             testImplementation(kotlin("test"))
             testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
             testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-        }
-    }
-
-    if (project.name != "codegen") {
-        spotless {
-            kotlin {
-                targetExclude("build/**")
-                ktlint(ktlintVersion)
-            }
         }
     }
 
