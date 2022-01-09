@@ -39,10 +39,10 @@ class ProductRepository(private val db: JdbcDatabase) {
             .where { p.productId eq productId }
             .includeAll()
         val store = db.runQuery(query)
-        return store.list(p).firstOrNull()?.let {
+        return store[p].firstOrNull()?.let {
             ProductAggregate(
                 product = it,
-                itemList = store.list(item),
+                itemSet = store[item],
             )
         }
     }

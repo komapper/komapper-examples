@@ -33,7 +33,7 @@ class HistoryController(private val orderService: OrderService) {
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "orderId=$orderId not found")
         model.addAttribute("order", orderAggregate.order)
         model.addAttribute("orderStatus", orderAggregate.orderStatus)
-        model.addAttribute("lineItemList", orderAggregate.lineItemList)
+        model.addAttribute("lineItemList", orderAggregate.lineItemSet)
         model.addAttribute("lineItem_product", orderAggregate.lineItem_product)
         return "history/detail"
     }

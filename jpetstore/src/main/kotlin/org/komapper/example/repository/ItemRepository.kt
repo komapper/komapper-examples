@@ -24,11 +24,11 @@ class ItemRepository(private val db: JdbcDatabase) {
             .where { item.itemId eq itemId }
             .includeAll()
         val store = db.runQuery(query)
-        return store.list(item).firstOrNull()?.let {
+        return store[item].firstOrNull()?.let {
             ItemAggregate(
                 item = it,
-                inventory = store.list(inv).single(),
-                product = store.list(p).single()
+                inventory = store[inv].single(),
+                product = store[p].single()
             )
         }
     }
