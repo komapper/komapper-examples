@@ -13,7 +13,6 @@ plugins {
 val komapperVersion: String by project
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
     implementation("org.komapper:komapper-spring-native-jdbc:$komapperVersion")
     implementation("org.komapper:komapper-dialect-h2-jdbc:$komapperVersion")
@@ -21,7 +20,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(group = "org.apache.tomcat.embed", module = "tomcat-embed-core")
         exclude(group = "org.apache.tomcat.embed", module = "tomcat-embed-websocket")
-        exclude(group = "org.springframework.boot", module = "spring-boot-starter-json")
     }
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("org.apache.tomcat.experimental:tomcat-embed-programmatic:${dependencyManagement.importedProperties["tomcat.version"]}")
