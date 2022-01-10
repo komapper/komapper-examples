@@ -23,7 +23,7 @@ dependencies {
         exclude(group = "org.apache.tomcat.embed", module = "tomcat-embed-websocket")
         exclude(group = "org.springframework.boot", module = "spring-boot-starter-json")
     }
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("org.apache.tomcat.experimental:tomcat-embed-programmatic:${dependencyManagement.importedProperties["tomcat.version"]}")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
