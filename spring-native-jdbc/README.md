@@ -12,7 +12,7 @@ You can build the native application with the following command:
 $ ./gradlew :spring-native-jdbc:bootBuildImage
 ```
 
-## Running
+## Run
 
 To run the application, start Docker as follows:
 
