@@ -12,6 +12,7 @@ pluginManagement {
     val kspVersion: String by settings
     plugins {
         id("org.jetbrains.kotlin.jvm") version kotlinVersion
+        id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
         id("org.komapper.gradle") version komapperVersion
@@ -31,3 +32,4 @@ include("jpetstore")
 include("kweet")
 include("spring-native-jdbc")
 include("spring-native-r2dbc")
+include("quarkus-jdbc")
