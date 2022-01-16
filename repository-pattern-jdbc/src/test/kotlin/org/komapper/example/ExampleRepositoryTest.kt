@@ -120,13 +120,20 @@ class ExampleRepositoryTest {
 
     @Test
     fun upsertAddress() {
-        repo.upsertAddress(Address(addressId = 1, street = "tokyo street"))
-        val tokyo = repo.fetchAddressById(1)
-        assertEquals("tokyo street", tokyo?.street)
+        // UPDATE
+        val address1 = repo.fetchAddressById(1)!!
+        repo.upsertAddress(address1.copy(street = "tokyo street")).let {
+            val tokyo = repo.fetchAddressById(it.addressId)
+            assertEquals("tokyo street", tokyo?.street)
+            println(tokyo)
+        }
 
-        repo.upsertAddress(Address(addressId = 99, street = "osaka street"))
-        val osaka = repo.fetchAddressById(99)
-        assertEquals("osaka street", osaka?.street)
+        // INSERT
+        repo.upsertAddress(Address(street = "osaka street")).let {
+            val osaka = repo.fetchAddressById(it.addressId)
+            assertEquals("osaka street", osaka?.street)
+            println(osaka)
+        }
     }
 
     @BeforeTest

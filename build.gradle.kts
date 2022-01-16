@@ -1,7 +1,7 @@
 plugins {
     java
     kotlin("jvm")
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+    id("com.diffplug.spotless")version "6.2.0"
 }
 
 val springBootProjects = subprojects.filter {
@@ -10,14 +10,18 @@ val springBootProjects = subprojects.filter {
 
 allprojects {
     apply(plugin = "base")
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "com.diffplug.spotless")
 
-    ktlint {
-        filter {
-            exclude("build/**")
+    spotless {
+        kotlin {
+            ktlint()
+            targetExclude("build/**")
             if (project.name == "codegen") {
-                exclude("src/**")
+                targetExclude("src/**")
             }
+        }
+        kotlinGradle {
+            ktlint()
         }
     }
 
@@ -30,17 +34,8 @@ allprojects {
     }
 
     tasks {
-        val pairs = listOf(
-            "ktlintKotlinScriptCheck" to "ktlintKotlinScriptFormat",
-            "ktlintMainSourceSetCheck" to "ktlintMainSourceSetFormat",
-            "ktlintTestSourceSetCheck" to "ktlintTestSourceSetFormat",
-        )
-        for ((checkTask, formatTask) in pairs) {
-            findByName(checkTask)?.mustRunAfter(formatTask)
-        }
-
         build {
-            dependsOn("ktlintFormat")
+            dependsOn(spotlessApply)
         }
     }
 }
