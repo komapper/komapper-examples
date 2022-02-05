@@ -10,6 +10,7 @@ pluginManagement {
     val kotlinVersion: String by settings
     val komapperVersion: String by settings
     val kspVersion: String by settings
+    val quarkusVersion: String by settings
     plugins {
         id("org.jetbrains.kotlin.jvm") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
@@ -17,6 +18,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
         id("org.komapper.gradle") version komapperVersion
         id("com.google.devtools.ksp") version kspVersion
+        id("io.quarkus") version quarkusVersion
     }
 }
 
