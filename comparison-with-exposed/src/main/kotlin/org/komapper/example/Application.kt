@@ -6,7 +6,6 @@ import org.komapper.annotation.KomapperId
 import org.komapper.annotation.KomapperTable
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
-import org.komapper.core.dsl.SchemaDsl
 import org.komapper.core.dsl.operator.count
 import org.komapper.core.dsl.operator.literal
 import org.komapper.core.dsl.operator.substring
@@ -49,7 +48,7 @@ fun main() {
 
     db.withTransaction {
         db.runQuery {
-            SchemaDsl.create(c, u)
+            QueryDsl.create(c, u)
         }
 
         val (saintPetersburg, munich) = db.runQuery {
@@ -145,7 +144,7 @@ fun main() {
         }
 
         db.runQuery {
-            SchemaDsl.drop(u, c)
+            QueryDsl.drop(u, c)
         }
     }
 }

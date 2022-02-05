@@ -3,9 +3,9 @@ import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 plugins {
     idea
     id("com.google.devtools.ksp")
-    id("org.springframework.boot") version "2.6.2"
+    id("org.springframework.boot") version "2.6.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    id("org.springframework.experimental.aot") version "0.11.1"
+    id("org.springframework.experimental.aot") version "0.11.2"
     kotlin("plugin.serialization")
     kotlin("plugin.spring")
 }

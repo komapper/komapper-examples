@@ -1,11 +1,11 @@
 plugins {
     idea
-    id("io.quarkus") version "2.6.3.Final"
+    id("io.quarkus")
     id("com.google.devtools.ksp")
     kotlin("plugin.allopen")
 }
 
-val quarkusVersion: String = "2.6.2.Final"
+val quarkusVersion: String by project
 val komapperVersion: String by project
 
 dependencies {
