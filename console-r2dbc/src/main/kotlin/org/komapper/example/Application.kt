@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
-import org.komapper.core.dsl.SchemaDsl
 import org.komapper.core.dsl.query.first
 import org.komapper.r2dbc.R2dbcDatabase
 import org.komapper.tx.r2dbc.withTransaction
@@ -24,7 +23,7 @@ fun main() = runBlocking {
     db.withTransaction {
         // create a schema
         db.runQuery {
-            SchemaDsl.create(a)
+            QueryDsl.create(a)
         }
 
         // INSERT

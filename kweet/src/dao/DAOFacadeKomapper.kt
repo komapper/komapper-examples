@@ -5,7 +5,6 @@ import io.ktor.samples.kweet.model.User
 import kotlinx.coroutines.runBlocking
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
-import org.komapper.core.dsl.SchemaDsl
 import org.komapper.core.dsl.operator.count
 import org.komapper.core.dsl.operator.desc
 import org.komapper.core.dsl.query.first
@@ -26,7 +25,7 @@ class DAOFacadeKomapper(
     override fun init() = runBlocking {
         db.withTransaction {
             db.runQuery {
-                SchemaDsl.create(k, u)
+                QueryDsl.create(k, u)
             }
         }
     }
