@@ -1,6 +1,6 @@
 plugins {
     idea
-    id("io.quarkus") version "2.6.3.Final"
+    id("io.quarkus") version "2.7.0.Final"
     id("com.google.devtools.ksp")
     kotlin("plugin.allopen")
 }
