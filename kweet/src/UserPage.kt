@@ -24,15 +24,15 @@ fun Route.userPage(db: R2dbc, dao: DAOFacade) {
      * A GET request will return a page with the profile of a given user from its [UserPage.user] name.
      * If the user doesn't exists, it will return a 404 page instead.
      */
-    get<UserPage> {
-        db.withTransaction {
+    get<UserPage> { location ->
+        db.withTransaction { _ ->
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
-            val pageUser = dao.user(it.user)
+            val pageUser = dao.user(location.user)
 
             if (pageUser == null) {
-                call.respond(HttpStatusCode.NotFound.description("User ${it.user} doesn't exist"))
+                call.respond(HttpStatusCode.NotFound.description("User ${location.user} doesn't exist"))
             } else {
-                val kweets = dao.userKweets(it.user)
+                val kweets = dao.userKweets(location.user)
                 val etag = (user?.userId ?: "") + "_" + kweets.map { it.text.hashCode() }.hashCode().toString()
 
                 call.respond(

@@ -34,8 +34,8 @@ fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) 
      * - On success, it generates a new [User]. But instead of storing the password plain text,
      *   it stores a hash of the password.
      */
-    post<Register> {
-        db.withTransaction {
+    post<Register> { location ->
+        db.withTransaction { _ ->
             // get current from session data if any
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
             // user already logged in? redirect to user page.
@@ -44,10 +44,10 @@ fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) 
             // receive post data
             // TODO: use conneg when it's ready and `call.receive<Register>()`
             val registration = call.receive<Parameters>()
-            val userId = registration["userId"] ?: return@withTransaction call.redirect(it)
-            val password = registration["password"] ?: return@withTransaction call.redirect(it)
-            val displayName = registration["displayName"] ?: return@withTransaction call.redirect(it)
-            val email = registration["email"] ?: return@withTransaction call.redirect(it)
+            val userId = registration["userId"] ?: return@withTransaction call.redirect(location)
+            val password = registration["password"] ?: return@withTransaction call.redirect(location)
+            val displayName = registration["displayName"] ?: return@withTransaction call.redirect(location)
+            val email = registration["email"] ?: return@withTransaction call.redirect(location)
 
             // prepare location class for error if any
             val error = Register(userId, displayName, email)
@@ -86,8 +86,8 @@ fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) 
      * A GET request would show the registration form (with an error if specified by the URL in the case there was an error in the form processing)
      * If the user is already logged, it redirects the client to the [UserPage] instead.
      */
-    get<Register> {
-        db.withTransaction {
+    get<Register> { location ->
+        db.withTransaction { _ ->
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
             if (user != null) {
                 call.redirect(UserPage(user.userId))
@@ -95,7 +95,7 @@ fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) 
                 call.respond(
                     FreeMarkerContent(
                         "register.ftl",
-                        mapOf("pageUser" to User(it.userId, it.email, it.displayName, ""), "error" to it.error),
+                        mapOf("pageUser" to User(location.userId, location.email, location.displayName, ""), "error" to location.error),
                         ""
                     )
                 )

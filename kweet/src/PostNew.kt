@@ -28,8 +28,8 @@ fun Route.postNew(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) {
      *
      * If the user is not logged it redirects to the [Login] page.
      */
-    get<PostNew> {
-        db.withTransaction {
+    get<PostNew> { _ ->
+        db.withTransaction { _ ->
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
 
             if (user == null) {
