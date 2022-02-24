@@ -27,14 +27,14 @@ fun Route.login(db: R2dbc, dao: DAOFacade, hash: (String) -> String) {
      * A GET request to the [Login], would respond with the login page
      * (unless the user is already logged in, in which case it would redirect to the user's page)
      */
-    get<Login> {
+    get<Login> { location ->
         db.withTransaction {
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
 
             if (user != null) {
                 call.redirect(UserPage(user.userId))
             } else {
-                call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to it.userId, "error" to it.error), ""))
+                call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to location.userId, "error" to location.error), ""))
             }
         }
     }

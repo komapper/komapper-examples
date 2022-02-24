@@ -22,12 +22,12 @@ fun Route.viewKweet(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String)
      * This page shows the [Kweet] content and its replies.
      * If there is an user logged in, and the kweet is from her/him, it will provide secured links to remove it.
      */
-    get<ViewKweet> {
-        db.withTransaction {
+    get<ViewKweet> { location ->
+        db.withTransaction { _ ->
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
             val date = System.currentTimeMillis()
             val code = if (user != null) call.securityCode(date, user, hashFunction) else null
-            val kweet = dao.getKweet(it.id)
+            val kweet = dao.getKweet(location.id)
             val isOwner = user?.userId == kweet.userId
 
             call.respond(

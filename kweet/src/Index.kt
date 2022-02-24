@@ -19,8 +19,8 @@ import org.komapper.tx.r2dbc.withTransaction
  */
 fun Route.index(db: R2dbc, dao: DAOFacade) {
     // Uses the location feature to register a get route for '/'.
-    get<Index> {
-        db.withTransaction {
+    get<Index> { _ ->
+        db.withTransaction { _ ->
             // Tries to get the user from the session (null if failure)
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
 
