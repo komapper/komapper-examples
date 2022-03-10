@@ -16,13 +16,12 @@ import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Registers the [Login] and [Logout] routes '/login' and '/logout'.
  */
-fun Route.login(db: R2dbc, dao: DAOFacade, hash: (String) -> String) {
+fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
     /**
      * A GET request to the [Login], would respond with the login page
      * (unless the user is already logged in, in which case it would redirect to the user's page)
@@ -34,7 +33,13 @@ fun Route.login(db: R2dbc, dao: DAOFacade, hash: (String) -> String) {
             if (user != null) {
                 call.redirect(UserPage(user.userId))
             } else {
-                call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to location.userId, "error" to location.error), ""))
+                call.respond(
+                    FreeMarkerContent(
+                        "login.ftl",
+                        mapOf("userId" to location.userId, "error" to location.error),
+                        ""
+                    )
+                )
             }
         }
     }

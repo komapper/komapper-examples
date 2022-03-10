@@ -18,7 +18,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import org.komapper.r2dbc.R2dbc
+import org.komapper.r2dbc.R2dbcDatabase
 import java.time.LocalDateTime
 import kotlin.test.Ignore
 import kotlin.test.assertEquals
@@ -32,7 +32,7 @@ import kotlin.test.assertTrue
  */
 class KweetApplicationTest {
 
-    val db = mockk<R2dbc>(relaxed = true)
+    val db = mockk<R2dbcDatabase>(relaxed = true)
 
     /**
      * A [mockk] instance of the [DAOFacade] to used to verify and mock calls on the integration tests.

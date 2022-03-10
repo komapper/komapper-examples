@@ -9,9 +9,21 @@ import org.junit.jupiter.api.Test
 class ApplicationTest {
 
     @Test
-    fun list() {
+    fun declarative() {
         RestAssured.given()
             .`when`()["/"]
+            .then()
+            .statusCode(200)
+            .body(
+                CoreMatchers.containsString("Hello"),
+                CoreMatchers.containsString("World!")
+            )
+    }
+
+    @Test
+    fun imperative() {
+        RestAssured.given()
+            .`when`()["/imperative"]
             .then()
             .statusCode(200)
             .body(

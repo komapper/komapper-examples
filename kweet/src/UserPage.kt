@@ -12,14 +12,13 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Register the [UserPage] route '/user/{user}',
  * with the user profile.
  */
-fun Route.userPage(db: R2dbc, dao: DAOFacade) {
+fun Route.userPage(db: R2dbcDatabase, dao: DAOFacade) {
     /**
      * A GET request will return a page with the profile of a given user from its [UserPage.user] name.
      * If the user doesn't exists, it will return a 404 page instead.

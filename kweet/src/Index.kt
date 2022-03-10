@@ -11,13 +11,12 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Register the index route of the website.
  */
-fun Route.index(db: R2dbc, dao: DAOFacade) {
+fun Route.index(db: R2dbcDatabase, dao: DAOFacade) {
     // Uses the location feature to register a get route for '/'.
     get<Index> { _ ->
         db.withTransaction { _ ->

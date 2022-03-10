@@ -11,13 +11,12 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Registers the [ViewKweet] route. (/kweet/{id})
  */
-fun Route.viewKweet(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) {
+fun Route.viewKweet(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
     /**
      * This page shows the [Kweet] content and its replies.
      * If there is an user logged in, and the kweet is from her/him, it will provide secured links to remove it.

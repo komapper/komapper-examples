@@ -18,13 +18,12 @@ import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Register routes for user registration in the [Register] route (/register)
  */
-fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) {
+fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
     /**
      * A POST request to the [Register] route, will try to create a new user.
      *
@@ -95,7 +94,10 @@ fun Route.register(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) 
                 call.respond(
                     FreeMarkerContent(
                         "register.ftl",
-                        mapOf("pageUser" to User(location.userId, location.email, location.displayName, ""), "error" to location.error),
+                        mapOf(
+                            "pageUser" to User(location.userId, location.email, location.displayName, ""),
+                            "error" to location.error
+                        ),
                         ""
                     )
                 )
