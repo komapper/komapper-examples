@@ -1,9 +1,11 @@
 package org.komapper.example
 
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.api.extension.InvocationInterceptor
+import org.junit.jupiter.api.extension.ReflectiveInvocationContext
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.jdbc.JdbcDatabase
-import org.komapper.tx.jdbc.transactionManager
-import org.komapper.tx.jdbc.withTransaction
+import java.lang.reflect.Method
 import java.math.BigDecimal
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -13,9 +15,9 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-class ExampleRepositoryTest {
+class ExampleRepositoryTest : InvocationInterceptor {
 
-    private val db = JdbcDatabase.create("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
+    private val db = JdbcDatabase("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
     private val repo = ExampleRepository(db)
 
     @Test
@@ -138,25 +140,30 @@ class ExampleRepositoryTest {
 
     @BeforeTest
     fun before() {
-        db.withTransaction {
-            db.runQuery {
-                QueryDsl.executeScript(script).options {
-                    it.copy(suppressLogging = true)
-                }
+        db.runQuery {
+            QueryDsl.executeScript(script).options {
+                it.copy(suppressLogging = true)
             }
         }
-        db.config.session.transactionManager.begin()
     }
 
     @AfterTest
     fun after() {
-        db.config.session.transactionManager.rollback()
-        db.withTransaction {
-            db.runQuery {
-                QueryDsl.executeScript("drop all objects").options {
-                    it.copy(suppressLogging = true)
-                }
+        db.runQuery {
+            QueryDsl.executeScript("drop all objects").options {
+                it.copy(suppressLogging = true)
             }
+        }
+    }
+
+    override fun interceptTestMethod(
+        invocation: InvocationInterceptor.Invocation<Void>?,
+        invocationContext: ReflectiveInvocationContext<Method>?,
+        extensionContext: ExtensionContext?
+    ) {
+        db.config.session.transactionOperator.required {
+            it.isRollbackOnly()
+            super.interceptTestMethod(invocation, invocationContext, extensionContext)
         }
     }
 

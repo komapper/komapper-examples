@@ -12,7 +12,6 @@ import org.komapper.core.dsl.operator.substring
 import org.komapper.core.dsl.operator.trim
 import org.komapper.core.dsl.query.first
 import org.komapper.jdbc.JdbcDatabase
-import org.komapper.tx.jdbc.withTransaction
 
 data class User(
     val id: String,
@@ -44,7 +43,7 @@ fun main() {
     val c = Meta.city
     val u = Meta.user
 
-    val db = JdbcDatabase.create("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
+    val db = JdbcDatabase("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
 
     db.withTransaction {
         db.runQuery {

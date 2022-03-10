@@ -30,7 +30,6 @@ import io.ktor.server.sessions.Sessions
 import io.ktor.server.sessions.cookie
 import io.ktor.util.hex
 import no.api.freemarker.java8.Java8ObjectWrapper
-import org.komapper.r2dbc.R2dbc
 import org.komapper.r2dbc.R2dbcDatabase
 import java.io.File
 import java.net.URI
@@ -94,7 +93,7 @@ private val hmacKey = SecretKeySpec(hashKey, "HmacSHA1")
 /**
  * The R2DBC database.
  */
-private val db = R2dbcDatabase.create("r2dbc:h2:file:///${dir.canonicalFile.absolutePath}")
+private val db = R2dbcDatabase("r2dbc:h2:file:///${dir.canonicalFile.absolutePath}")
 
 /**
  * Constructs a facade with the database.
@@ -121,7 +120,7 @@ fun Application.main() {
  * This function is called from the entry point and tests to configure an application
  * using the specified [dao] [DAOFacade].
  */
-fun Application.mainWithDependencies(db: R2dbc, dao: DAOFacade) {
+fun Application.mainWithDependencies(db: R2dbcDatabase, dao: DAOFacade) {
     // This adds automatically Date and Server headers to each response, and would allow you to configure
     // additional headers served to each response.
     install(DefaultHeaders)

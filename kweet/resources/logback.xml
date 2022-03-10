@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.komapper.SQL_WITH_ARGS" level="trace"/>
+    <logger name="org.komapper.SqlWithArgs" level="trace"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

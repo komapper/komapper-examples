@@ -1,20 +1,18 @@
 package org.komapper.example
 
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.query.first
 import org.komapper.r2dbc.R2dbcDatabase
-import org.komapper.tx.r2dbc.withTransaction
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 val logger: Logger = LoggerFactory.getLogger("console")
 
-fun main() = runBlocking {
+suspend fun main() {
     // create a Database instance
-    val db = R2dbcDatabase.create("r2dbc:h2:mem:///example;DB_CLOSE_DELAY=-1")
+    val db = R2dbcDatabase("r2dbc:h2:mem:///example;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
     val a = Meta.address

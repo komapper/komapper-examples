@@ -11,7 +11,6 @@ import org.komapper.core.dsl.query.first
 import org.komapper.core.dsl.query.firstOrNull
 import org.komapper.core.dsl.query.map
 import org.komapper.r2dbc.R2dbcDatabase
-import org.komapper.tx.r2dbc.withTransaction
 import java.time.LocalDateTime
 
 class DAOFacadeKomapper(
@@ -23,10 +22,8 @@ class DAOFacadeKomapper(
     private val u = Meta.user
 
     override fun init() = runBlocking {
-        db.withTransaction {
-            db.runQuery {
-                QueryDsl.create(k, u)
-            }
+        db.runQuery {
+            QueryDsl.create(k, u)
         }
     }
 

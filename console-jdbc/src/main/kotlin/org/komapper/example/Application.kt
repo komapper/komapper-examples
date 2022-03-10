@@ -4,7 +4,6 @@ import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.query.first
 import org.komapper.jdbc.JdbcDatabase
-import org.komapper.tx.jdbc.withTransaction
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -12,7 +11,7 @@ val logger: Logger = LoggerFactory.getLogger("console")
 
 fun main() {
     // create a Database instance
-    val db = JdbcDatabase.create("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
+    val db = JdbcDatabase("jdbc:h2:mem:example;DB_CLOSE_DELAY=-1")
 
     // get a metamodel
     val a = Meta.address

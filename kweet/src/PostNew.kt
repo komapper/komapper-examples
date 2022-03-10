@@ -14,15 +14,14 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Register routes for the [PostNew] route '/post-new'
  */
-fun Route.postNew(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) {
+fun Route.postNew(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
 
-/**
+    /**
      * A GET request returns a page with a form to post a new Kweet in the case the user
      * is logged also generating a [code] token to prevent.
      *

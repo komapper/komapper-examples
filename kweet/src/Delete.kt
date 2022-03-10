@@ -6,19 +6,17 @@ import io.ktor.http.Parameters
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.server.application.call
 import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.get
 import io.ktor.server.locations.post
 import io.ktor.server.request.receive
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import org.komapper.r2dbc.R2dbc
-import org.komapper.tx.r2dbc.withTransaction
+import org.komapper.r2dbc.R2dbcDatabase
 
 /**
  * Registers a route for deleting deleting kweets.
  */
-fun Route.delete(db: R2dbc, dao: DAOFacade, hashFunction: (String) -> String) {
+fun Route.delete(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
     // Uses the location feature to register a post route for '/kweet/{id}/delete'.
     post<KweetDelete> { location ->
         db.withTransaction { _ ->
