@@ -29,7 +29,7 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging:2.0.0-eap-256")
     implementation("org.freemarker:freemarker:2.3.31")
     implementation("no.api.freemarker:freemarker-java8:2.0.0")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.10")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.11")
 
     testImplementation("io.ktor:ktor-server-test-host:2.0.0-eap-256")
     testImplementation("io.mockk:mockk:1.12.2")
