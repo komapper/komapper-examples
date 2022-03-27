@@ -20,6 +20,8 @@ dependencies {
     ksp("org.komapper:komapper-processor:$komapperVersion")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured:5.0.0")
+    testImplementation("io.quarkus:quarkus-jdbc-h2")
+    testImplementation("org.komapper:komapper-dialect-h2-jdbc")
 }
 
 idea {
