@@ -1,6 +1,6 @@
 plugins {
     idea
-    id("org.springframework.boot") version "2.6.4"
+    id("org.springframework.boot") version "2.6.5"
     id("com.google.devtools.ksp")
     kotlin("plugin.spring")
 }
