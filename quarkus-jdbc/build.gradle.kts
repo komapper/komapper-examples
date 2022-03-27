@@ -19,7 +19,7 @@ dependencies {
     implementation("org.komapper:komapper-dialect-postgresql-jdbc")
     ksp("org.komapper:komapper-processor:$komapperVersion")
     testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("io.rest-assured:rest-assured:4.5.1")
+    testImplementation("io.rest-assured:rest-assured:5.0.0")
 }
 
 idea {
