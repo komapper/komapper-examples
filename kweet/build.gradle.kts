@@ -26,7 +26,7 @@ dependencies {
     implementation("io.ktor:ktor-server-conditional-headers:2.0.0-eap-256")
     implementation("io.ktor:ktor-server-default-headers:2.0.0-eap-256")
     implementation("io.ktor:ktor-server-partial-content:2.0.0-eap-256")
-    implementation("io.ktor:ktor-server-call-logging:2.0.0-eap-256")
+    implementation("io.ktor:ktor-server-call-logging:2.0.0")
     implementation("org.freemarker:freemarker:2.3.31")
     implementation("no.api.freemarker:freemarker-java8:2.0.0")
     runtimeOnly("ch.qos.logback:logback-classic:1.2.11")
