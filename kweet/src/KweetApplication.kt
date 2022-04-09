@@ -16,10 +16,10 @@ import io.ktor.server.locations.KtorExperimentalLocationsAPI
 import io.ktor.server.locations.Location
 import io.ktor.server.locations.Locations
 import io.ktor.server.locations.locations
-import io.ktor.server.plugins.CallLogging
-import io.ktor.server.plugins.ConditionalHeaders
-import io.ktor.server.plugins.DefaultHeaders
-import io.ktor.server.plugins.PartialContent
+import io.ktor.server.plugins.callloging.CallLogging
+import io.ktor.server.plugins.conditionalheaders.ConditionalHeaders
+import io.ktor.server.plugins.defaultheaders.DefaultHeaders
+import io.ktor.server.plugins.partialcontent.PartialContent
 import io.ktor.server.request.header
 import io.ktor.server.request.host
 import io.ktor.server.request.port
