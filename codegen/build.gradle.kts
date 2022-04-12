@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(platform("org.testcontainers:testcontainers-bom:1.16.3"))
+        classpath(platform("org.testcontainers:testcontainers-bom:1.17.0"))
         classpath("org.testcontainers:mysql")
         classpath("org.testcontainers:postgresql")
         classpath("mysql:mysql-connector-java:8.0.28")
