@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+val ktorVersion: String by project
 val komapperVersion: String by project
 
 application {
@@ -20,23 +21,27 @@ dependencies {
         implementation(it)
         ksp(it)
     }
+    platform("io.ktor:ktor-bom:$ktorVersion").let {
+        implementation(it)
+        testImplementation(it)
+    }
 
     implementation("org.komapper:komapper-starter-r2dbc")
     implementation("org.komapper:komapper-dialect-h2-r2dbc")
     ksp("org.komapper:komapper-processor")
 
-    implementation("io.ktor:ktor-server-netty:2.0.1")
-    implementation("io.ktor:ktor-server-freemarker:2.0.1")
-    implementation("io.ktor:ktor-server-locations:2.0.1")
-    implementation("io.ktor:ktor-server-conditional-headers:2.0.1")
-    implementation("io.ktor:ktor-server-default-headers:2.0.1")
-    implementation("io.ktor:ktor-server-partial-content:2.0.1")
-    implementation("io.ktor:ktor-server-call-logging:2.0.1")
+    implementation("io.ktor:ktor-server-netty")
+    implementation("io.ktor:ktor-server-freemarker")
+    implementation("io.ktor:ktor-server-locations")
+    implementation("io.ktor:ktor-server-conditional-headers")
+    implementation("io.ktor:ktor-server-default-headers")
+    implementation("io.ktor:ktor-server-partial-content")
+    implementation("io.ktor:ktor-server-call-logging")
     implementation("org.freemarker:freemarker:2.3.31")
     implementation("no.api.freemarker:freemarker-java8:2.0.0")
     runtimeOnly("ch.qos.logback:logback-classic:1.2.11")
 
-    testImplementation("io.ktor:ktor-server-test-host:2.0.1")
+    testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("io.mockk:mockk:1.12.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
