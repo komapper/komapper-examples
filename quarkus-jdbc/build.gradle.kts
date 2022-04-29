@@ -9,15 +9,18 @@ val quarkusVersion: String by project
 val komapperVersion: String by project
 
 dependencies {
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
     implementation(enforcedPlatform("io.quarkus:quarkus-bom:$quarkusVersion"))
-    implementation(platform("org.komapper:komapper-platform:$komapperVersion"))
     implementation("io.quarkus:quarkus-kotlin")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jsonb")
     implementation("org.komapper:komapper-quarkus-jdbc")
     implementation("org.komapper:komapper-dialect-postgresql-jdbc")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    ksp("org.komapper:komapper-processor")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured:5.0.1")
     testImplementation("io.quarkus:quarkus-jdbc-h2")

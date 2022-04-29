@@ -16,9 +16,14 @@ repositories {
 }
 
 dependencies {
-    implementation("org.komapper:komapper-starter-r2dbc:$komapperVersion")
-    implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
+
+    implementation("org.komapper:komapper-starter-r2dbc")
+    implementation("org.komapper:komapper-dialect-h2-r2dbc")
+    ksp("org.komapper:komapper-processor")
 
     implementation("io.ktor:ktor-server-netty:2.0.0")
     implementation("io.ktor:ktor-server-freemarker:2.0.0")

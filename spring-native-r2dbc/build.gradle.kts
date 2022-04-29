@@ -13,10 +13,14 @@ plugins {
 val komapperVersion: String by project
 
 dependencies {
-    implementation("org.komapper:komapper-spring-boot-starter-r2dbc:$komapperVersion")
-    implementation("org.komapper:komapper-spring-native-r2dbc:$komapperVersion")
-    implementation("org.komapper:komapper-dialect-h2-r2dbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
+    implementation("org.komapper:komapper-spring-boot-starter-r2dbc")
+    implementation("org.komapper:komapper-spring-native-r2dbc")
+    implementation("org.komapper:komapper-dialect-h2-r2dbc")
+    ksp("org.komapper:komapper-processor")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

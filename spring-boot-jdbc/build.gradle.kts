@@ -18,12 +18,16 @@ idea {
 }
 
 dependencies {
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
-    implementation("org.komapper:komapper-sqlcommenter:$komapperVersion")
-    implementation("org.komapper:komapper-dialect-h2-jdbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    implementation("org.komapper:komapper-spring-boot-starter-jdbc")
+    implementation("org.komapper:komapper-sqlcommenter")
+    implementation("org.komapper:komapper-dialect-h2-jdbc")
+    ksp("org.komapper:komapper-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

@@ -13,10 +13,14 @@ plugins {
 val komapperVersion: String by project
 
 dependencies {
-    implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
-    implementation("org.komapper:komapper-spring-native-jdbc:$komapperVersion")
-    implementation("org.komapper:komapper-dialect-h2-jdbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
+    implementation("org.komapper:komapper-spring-boot-starter-jdbc")
+    implementation("org.komapper:komapper-spring-native-jdbc")
+    implementation("org.komapper:komapper-dialect-h2-jdbc")
+    ksp("org.komapper:komapper-processor")
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(group = "org.apache.tomcat.embed", module = "tomcat-embed-core")
         exclude(group = "org.apache.tomcat.embed", module = "tomcat-embed-websocket")
