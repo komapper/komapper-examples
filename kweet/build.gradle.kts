@@ -36,7 +36,7 @@ dependencies {
     implementation("no.api.freemarker:freemarker-java8:2.0.0")
     runtimeOnly("ch.qos.logback:logback-classic:1.2.11")
 
-    testImplementation("io.ktor:ktor-server-test-host:2.0.0")
+    testImplementation("io.ktor:ktor-server-test-host:2.0.1")
     testImplementation("io.mockk:mockk:1.12.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
