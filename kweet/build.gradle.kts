@@ -25,7 +25,7 @@ dependencies {
     implementation("org.komapper:komapper-dialect-h2-r2dbc")
     ksp("org.komapper:komapper-processor")
 
-    implementation("io.ktor:ktor-server-netty:2.0.0")
+    implementation("io.ktor:ktor-server-netty:2.0.1")
     implementation("io.ktor:ktor-server-freemarker:2.0.0")
     implementation("io.ktor:ktor-server-locations:2.0.0")
     implementation("io.ktor:ktor-server-conditional-headers:2.0.0")
