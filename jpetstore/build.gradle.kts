@@ -28,10 +28,15 @@ repositories {
 }
 
 dependencies {
-    implementation("org.komapper:komapper-spring-boot-starter-jdbc:$komapperVersion")
-    implementation("org.komapper:komapper-sqlcommenter:$komapperVersion")
-    implementation("org.komapper:komapper-dialect-h2-jdbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    platform("org.komapper:komapper-platform:$komapperVersion").let {
+        implementation(it)
+        ksp(it)
+    }
+
+    implementation("org.komapper:komapper-spring-boot-starter-jdbc")
+    implementation("org.komapper:komapper-sqlcommenter")
+    implementation("org.komapper:komapper-dialect-h2-jdbc")
+    ksp("org.komapper:komapper-processor")
 
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
