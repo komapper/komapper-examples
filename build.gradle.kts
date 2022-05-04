@@ -51,13 +51,13 @@ subprojects {
         }
     }
 
-    kotlin {
-        jvmToolchain {
-            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    tasks {
+        withType<Test>().configureEach {
+            useJUnitPlatform()
         }
-    }
 
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            kotlinOptions.jvmTarget = "11"
+        }
     }
 }
