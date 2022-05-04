@@ -114,7 +114,7 @@ class ExampleRepository(private val db: JdbcDatabase) {
         return db.runQuery(query)
     }
 
-    fun updateSalaryOfHighPerformers(raise: BigDecimal): Int {
+    fun updateSalaryOfHighPerformers(raise: BigDecimal): Long {
         val query = QueryDsl.update(e).set {
             e.salary eq e.salary + raise
         }.where(isHighPerformer)
