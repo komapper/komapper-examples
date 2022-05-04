@@ -8,7 +8,7 @@ import org.komapper.jdbc.DefaultJdbcDatabaseConfig
 import org.komapper.jdbc.JdbcDatabase
 import org.komapper.jdbc.JdbcDialects
 import org.komapper.jdbc.JdbcSession
-import org.komapper.quarkus.jdbc.JtaTransactionSession
+import org.komapper.quarkus.jdbc.QuarkusJdbcTransactionSession
 import javax.inject.Inject
 import javax.sql.DataSource
 import javax.transaction.TransactionManager
@@ -20,7 +20,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @QuarkusTest
-internal class JtaTransactionOperatorTest {
+internal class QuarkusJdbcTransactionOperatorTest {
 
     @Inject
     private lateinit var dataSource: DataSource
@@ -303,7 +303,7 @@ internal class JtaTransactionOperatorTest {
         """.trimIndent()
 
         val config = object : DefaultJdbcDatabaseConfig(dataSource, JdbcDialects.get("h2")) {
-            override val session: JdbcSession = JtaTransactionSession(transactionManager, dataSource)
+            override val session: JdbcSession = QuarkusJdbcTransactionSession(transactionManager, dataSource)
         }
 
         db = JdbcDatabase(config)

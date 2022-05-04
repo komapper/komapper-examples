@@ -109,7 +109,7 @@ class ExampleRepositoryTest : InvocationInterceptor {
     @Test
     fun updateSalaryOfHighPerformers() {
         val count = repo.updateSalaryOfHighPerformers(BigDecimal(100))
-        assertEquals(4, count)
+        assertEquals(4L, count)
     }
 
     @Test
