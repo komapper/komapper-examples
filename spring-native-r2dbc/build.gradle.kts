@@ -22,7 +22,7 @@ dependencies {
     implementation("org.komapper:komapper-dialect-h2-r2dbc")
     ksp("org.komapper:komapper-processor")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
