@@ -1,12 +1,14 @@
 plugins {
     java
     kotlin("jvm")
-    id("com.diffplug.spotless")version "6.7.2"
+    id("com.diffplug.spotless")version "6.11.0"
 }
 
 val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot") || it.name == "jpetstore"
 }
+
+val ktlintVersion: String by project
 
 allprojects {
     apply(plugin = "base")
@@ -14,14 +16,14 @@ allprojects {
 
     spotless {
         kotlin {
-            ktlint()
+            ktlint(ktlintVersion)
             targetExclude("build/**")
             if (project.name == "codegen") {
                 targetExclude("src/**")
             }
         }
         kotlinGradle {
-            ktlint()
+            ktlint(ktlintVersion)
         }
     }
 
