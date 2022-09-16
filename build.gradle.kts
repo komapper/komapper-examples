@@ -1,7 +1,7 @@
 plugins {
     java
     kotlin("jvm")
-    id("com.diffplug.spotless")version "6.7.2"
+    id("com.diffplug.spotless")version "6.11.0"
 }
 
 val springBootProjects = subprojects.filter {
