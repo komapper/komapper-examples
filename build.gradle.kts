@@ -8,20 +8,22 @@ val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot") || it.name == "jpetstore"
 }
 
+val ktlintVersion: String by project
+
 allprojects {
     apply(plugin = "base")
     apply(plugin = "com.diffplug.spotless")
 
     spotless {
         kotlin {
-            ktlint()
+            ktlint(ktlintVersion)
             targetExclude("build/**")
             if (project.name == "codegen") {
                 targetExclude("src/**")
             }
         }
         kotlinGradle {
-            ktlint()
+            ktlint(ktlintVersion)
         }
     }
 
