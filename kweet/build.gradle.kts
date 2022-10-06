@@ -39,7 +39,7 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging")
     implementation("org.freemarker:freemarker:2.3.31")
     implementation("no.api.freemarker:freemarker-java8:2.1.0")
-    runtimeOnly("ch.qos.logback:logback-classic:1.4.1")
+    runtimeOnly("ch.qos.logback:logback-classic:1.4.3")
 
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("io.mockk:mockk:1.13.2")
