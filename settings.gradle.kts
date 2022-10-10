@@ -16,7 +16,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
         id("org.komapper.gradle") version komapperVersion
-        id("com.google.devtools.ksp") version kspVersion
+        id("com.google.devtools.ksp") version "$kotlinVersion-$kspVersion"
         id("io.quarkus") version quarkusVersion
     }
 }
