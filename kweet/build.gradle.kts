@@ -42,7 +42,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic:1.4.4")
 
     testImplementation("io.ktor:ktor-server-test-host")
-    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation("io.mockk:mockk:1.13.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
