@@ -5,16 +5,16 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository
 import javax.sql.DataSource
 
 @Configuration
-class WebSecurityConfiguration(private val dataSource: DataSource, private val accountService: AccountService) :
-    WebSecurityConfigurerAdapter() {
+class WebSecurityConfiguration(private val dataSource: DataSource, private val accountService: AccountService) {
     @Bean
     fun persistentTokenRepository(): PersistentTokenRepository {
         val tokenRepository = JdbcTokenRepositoryImpl()
@@ -22,7 +22,8 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
         return tokenRepository
     }
 
-    override fun configure(http: HttpSecurity) {
+    @Bean
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeRequests()
             .antMatchers(
                 "/",
@@ -48,14 +49,14 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
             .logoutUrl("/signout")
             .permitAll()
         http.rememberMe().tokenRepository(persistentTokenRepository())
+        http.getSharedObject(AuthenticationManagerBuilder::class.java)
+            .userDetailsService<UserDetailsService>(accountService)
+            .passwordEncoder(passwordEncoder())
+        return http.build()
     }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
-    }
-
-    override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(accountService).passwordEncoder(passwordEncoder())
     }
 }
