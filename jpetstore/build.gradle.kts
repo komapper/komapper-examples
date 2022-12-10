@@ -1,6 +1,6 @@
 plugins {
     idea
-    id("org.springframework.boot") version "2.7.5"
+    id("org.springframework.boot")
     id("com.google.devtools.ksp")
     kotlin("plugin.spring")
 }
@@ -34,7 +34,6 @@ dependencies {
     }
 
     implementation("org.komapper:komapper-spring-boot-starter-jdbc")
-    implementation("org.komapper:komapper-sqlcommenter")
     implementation("org.komapper:komapper-dialect-h2-jdbc")
     ksp("org.komapper:komapper-processor")
 
@@ -42,8 +41,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
     implementation("com.h2database:h2:2.1.214")
     implementation("org.webjars:jquery:3.6.1")
+    implementation("org.webjars:webjars-locator:0.46")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {

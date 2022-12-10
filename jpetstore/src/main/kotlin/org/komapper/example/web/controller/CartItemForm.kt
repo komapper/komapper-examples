@@ -1,7 +1,7 @@
 package org.komapper.example.web.controller
 
-import javax.validation.constraints.Max
-import javax.validation.constraints.NotNull
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.NotNull
 
 class CartItemForm {
     @Max(99)

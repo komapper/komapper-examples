@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>JPetStore Demo</title>
     <link rel="stylesheet" type="text/css" href="../static/css/jpetstore.css" th:href="@{/css/jpetstore.css}"/>
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   </head>
   <body>
     <div id="Header">
@@ -19,11 +19,11 @@
         <div id="MenuContent">
           <a th:href="@{/cart}"><img align="middle" name="img_cart" th:src="@{/images/cart.gif}"/></a>
           <img align="middle" th:src="@{/images/separator.gif}"/>
-          <!--/*/ <th:block th:unless="${#httpServletRequest.userPrincipal}"> /*/-->
+          <!--/*/ <th:block th:unless="${#authorization.expression('isAuthenticated()')}"> /*/-->
           <a th:href="@{/signin}">Sign In</a>
           <!--/*/ </th:block> /*/-->
-          <!--/*/ <th:block th:if="${#httpServletRequest.userPrincipal}"> /*/-->
-          <a id="signout" href="#">Sign Out</a>
+          <!--/*/ <th:block th:if="${#authorization.expression('isAuthenticated()')}"> /*/-->
+          <a id="signout" href= "#">Sign Out</a>
           <img align="middle" th:src="@{/images/separator.gif}"/>
           <a th:href="@{/account/edit}">My Account</a>
           <!--/*/ </th:block> /*/-->

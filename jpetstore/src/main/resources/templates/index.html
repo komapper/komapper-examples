@@ -9,9 +9,9 @@
   <body>
     <section layout:fragment="content">
       <div id="Welcome">
-        <div id="WelcomeContent" th:if="${#httpServletRequest.userPrincipal}">
+        <div id="WelcomeContent" th:if="${#authorization.expression('isAuthenticated()')}">
           <span th:text="${message} ? ${message} : Welcome">Welcome</span>
-          <span th:text="${#httpServletRequest.userPrincipal.name}"></span>
+          <span th:text="${#authentication.name}"></span>
         </div>
       </div>
       <div id="Main">
