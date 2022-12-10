@@ -1,6 +1,7 @@
 package org.komapper.example.web
 
 import org.komapper.example.service.AccountService
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -24,30 +25,28 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
 
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeRequests()
-            .antMatchers(
-                "/",
-                "/cart/**",
-                "/category/**",
-                "/product/**",
-                "/item/**",
-                "/search/**",
-                "/account/add",
-                "/images/**",
-                "/css/**",
-                "/js/**",
-                "/webjars/**"
-            )
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-        http.formLogin()
-            .loginPage("/signin")
-            .permitAll()
-            .and()
-            .logout()
-            .logoutUrl("/signout")
-            .permitAll()
+        http.authorizeHttpRequests { authz ->
+            authz
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .requestMatchers(
+                    "/",
+                    "/cart/**",
+                    "/category/**",
+                    "/product/**",
+                    "/item/**",
+                    "/search/**",
+                    "/account/add"
+                ).permitAll()
+                .anyRequest().authenticated()
+        }
+        http.formLogin { login ->
+            login.loginPage("/signin")
+                .loginProcessingUrl("/signin")
+                .permitAll()
+        }.logout { logout ->
+            logout.logoutUrl("/signout")
+                .logoutSuccessUrl("/")
+        }
         http.rememberMe().tokenRepository(persistentTokenRepository())
         http.getSharedObject(AuthenticationManagerBuilder::class.java)
             .userDetailsService<UserDetailsService>(accountService)
