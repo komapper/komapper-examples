@@ -63,3 +63,14 @@ subprojects {
         }
     }
 }
+
+// TODO Remove this workaround in the future
+// https://github.com/quarkusio/quarkus/issues/29698#issuecomment-1368073417
+project.afterEvaluate {
+    tasks.findByPath("quarkus-jdbc:quarkusGenerateCode")?.let { task ->
+        task.setDependsOn(task.dependsOn.map { it as Provider<*> }.filter { it.get() !is ProcessResources })
+    }
+    tasks.findByPath("quarkus-jdbc:quarkusGenerateCodeDev")?.let { task ->
+        task.setDependsOn(task.dependsOn.map { it as Provider<*> }.filter { it.get() !is ProcessResources })
+    }
+}
