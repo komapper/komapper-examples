@@ -37,8 +37,8 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
                     FreeMarkerContent(
                         "login.ftl",
                         mapOf("userId" to location.userId, "error" to location.error),
-                        ""
-                    )
+                        "",
+                    ),
                 )
             }
         }
@@ -51,7 +51,6 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
      */
     post<Login> {
         db.withTransaction {
-
             val post = call.receive<Parameters>()
             val userId = post["userId"] ?: return@withTransaction call.redirect(it)
             val password = post["password"] ?: return@withTransaction call.redirect(it)

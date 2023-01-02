@@ -21,7 +21,7 @@ class PasswordValidator : Validator {
             errors.rejectValue(
                 "password",
                 "PasswordValidator.addAccountForm.password",
-                "password and repeated password must be same."
+                "password and repeated password must be same.",
             )
         }
     }

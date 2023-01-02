@@ -6,7 +6,7 @@ import org.komapper.annotation.KomapperId
 
 data class Message(
     val id: Int? = null,
-    val text: String
+    val text: String,
 )
 
 @KomapperEntityDef(Message::class)

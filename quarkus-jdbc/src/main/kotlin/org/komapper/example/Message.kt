@@ -11,5 +11,6 @@ data class Message(
 
 @KomapperEntityDef(Message::class)
 data class MessageDef(
-    @KomapperId @KomapperAutoIncrement val id: Nothing,
+    @KomapperId @KomapperAutoIncrement
+    val id: Nothing,
 )

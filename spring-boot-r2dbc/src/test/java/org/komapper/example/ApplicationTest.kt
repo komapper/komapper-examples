@@ -26,7 +26,7 @@ class ApplicationTest {
         val (id, text) = restTemplate.getForObject(
             UriComponentsBuilder.fromUriString("http://localhost").port(port)
                 .queryParam("text", "Hi!").build().toUri(),
-            Message::class.java
+            Message::class.java,
         )
         assertEquals(3, id)
         assertEquals("Hi!", text)
@@ -35,18 +35,18 @@ class ApplicationTest {
         val messages = restTemplate.exchange(
             UriComponentsBuilder.fromUriString("http://localhost").port(port)
                 .build().toUri(),
-            HttpMethod.GET, HttpEntity.EMPTY,
-            typedReference
+            HttpMethod.GET,
+            HttpEntity.EMPTY,
+            typedReference,
         ).body
         assertEquals(3, messages!!.size)
         assertEquals(
-            listOf
-            (
+            listOf(
                 Message(1, "Hello"),
                 Message(2, "World"),
-                Message(3, "Hi!")
+                Message(3, "Hi!"),
             ),
-            messages
+            messages,
         )
     }
 }

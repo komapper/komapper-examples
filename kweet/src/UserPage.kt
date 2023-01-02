@@ -38,8 +38,8 @@ fun Route.userPage(db: R2dbcDatabase, dao: DAOFacade) {
                     FreeMarkerContent(
                         "user.ftl",
                         mapOf("user" to user, "pageUser" to pageUser, "kweets" to kweets),
-                        etag
-                    )
+                        etag,
+                    ),
                 )
             }
         }

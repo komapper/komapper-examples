@@ -30,7 +30,7 @@ interface DAOFacade : Closeable {
         user: String,
         text: String,
         replyTo: Int? = null,
-        date: LocalDateTime = LocalDateTime.now()
+        date: LocalDateTime = LocalDateTime.now(),
     ): Int
 
     /**

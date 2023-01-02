@@ -35,7 +35,7 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
                     "/product/**",
                     "/item/**",
                     "/search/**",
-                    "/account/add"
+                    "/account/add",
                 ).permitAll()
                 .anyRequest().authenticated()
         }

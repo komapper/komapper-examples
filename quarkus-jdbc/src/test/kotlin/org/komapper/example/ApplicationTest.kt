@@ -16,7 +16,7 @@ class ApplicationTest {
             .statusCode(200)
             .body(
                 CoreMatchers.containsString("Hello"),
-                CoreMatchers.containsString("World!")
+                CoreMatchers.containsString("World!"),
             )
     }
 
@@ -28,7 +28,7 @@ class ApplicationTest {
             .statusCode(200)
             .body(
                 CoreMatchers.containsString("Hello"),
-                CoreMatchers.containsString("World!")
+                CoreMatchers.containsString("World!"),
             )
     }
 }

@@ -37,9 +37,9 @@ fun Route.viewKweet(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) ->
                         "kweet" to kweet,
                         "isOwner" to isOwner,
                         "date" to date,
-                        "code" to code
+                        "code" to code,
                     ),
-                )
+                ),
             )
         }
     }

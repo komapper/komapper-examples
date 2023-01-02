@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 class AccountController(
     private val accountService: AccountService,
     private val passwordEncoder: PasswordEncoder,
-    private val passwordValidator: PasswordValidator
+    private val passwordValidator: PasswordValidator,
 ) {
 
     @InitBinder("accountAddForm")
@@ -43,7 +43,7 @@ class AccountController(
     fun add(
         @Validated accountForm: AccountAddForm,
         bindingResult: BindingResult,
-        model: Model
+        model: Model,
     ): String {
         if (bindingResult.hasErrors()) {
             return modelAndViewForAdd(model, accountForm)
@@ -77,7 +77,7 @@ class AccountController(
         @Validated accountForm: AccountEditForm,
         bindingResult: BindingResult,
         model: Model,
-        @AuthenticationPrincipal user: User
+        @AuthenticationPrincipal user: User,
     ): String {
         if (bindingResult.hasErrors()) {
             return modelAndViewForEdit(model, accountForm, user)

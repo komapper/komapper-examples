@@ -20,7 +20,7 @@ class OrderController(private val orderService: OrderService, private val cart: 
     fun confirm(
         model: Model,
         @AuthenticationPrincipal user: User,
-        redirectAttributes: RedirectAttributes
+        redirectAttributes: RedirectAttributes,
     ): String {
         if (cart.isEmpty) {
             return fillMessageAndRedirectToIndex(redirectAttributes)

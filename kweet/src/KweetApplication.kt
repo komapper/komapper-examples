@@ -61,7 +61,7 @@ data class Register(
     val userId: String = "",
     val displayName: String = "",
     val email: String = "",
-    val error: String = ""
+    val error: String = "",
 )
 
 @Location("/login")
@@ -208,7 +208,7 @@ fun ApplicationCall.verifyCode(date: Long, user: User, code: String, hashFunctio
         (System.currentTimeMillis() - date).let {
             it > 0 && it < TimeUnit.MILLISECONDS.convert(
                 2,
-                TimeUnit.HOURS
+                TimeUnit.HOURS,
             )
         }
 

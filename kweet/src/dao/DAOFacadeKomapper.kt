@@ -14,7 +14,7 @@ import org.komapper.r2dbc.R2dbcDatabase
 import java.time.LocalDateTime
 
 class DAOFacadeKomapper(
-    private val db: R2dbcDatabase
+    private val db: R2dbcDatabase,
 ) : DAOFacade {
 
     private val k = Meta.kweet

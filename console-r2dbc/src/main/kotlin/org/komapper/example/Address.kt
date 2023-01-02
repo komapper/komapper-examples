@@ -11,7 +11,9 @@ import java.time.LocalDateTime
 
 @KomapperEntity
 data class Address(
-    @KomapperId @KomapperAutoIncrement @KomapperColumn(name = "ADDRESS_ID")
+    @KomapperId
+    @KomapperAutoIncrement
+    @KomapperColumn(name = "ADDRESS_ID")
     val id: Int = 0,
     val street: String,
     @KomapperVersion val version: Int = 0,

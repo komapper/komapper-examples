@@ -13,5 +13,5 @@ data class KweetDef(
     val userId: Nothing,
     val text: Nothing,
     val date: Nothing,
-    val replyTo: Nothing
+    val replyTo: Nothing,
 )
