@@ -10,13 +10,13 @@ import org.springframework.boot.test.web.server.LocalServerPort
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class ApplicationTest(
     @Autowired private val restTemplate: TestRestTemplate,
-    @LocalServerPort private val port: Int
+    @LocalServerPort private val port: Int,
 ) {
 
     @Test
     fun fish() {
         Assertions.assertThat(
-            restTemplate.getForObject("http://localhost:$port/category/FISH", String::class.java)
+            restTemplate.getForObject("http://localhost:$port/category/FISH", String::class.java),
         ).contains("Angelfish")
     }
 }

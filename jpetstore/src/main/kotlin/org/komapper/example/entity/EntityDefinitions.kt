@@ -9,7 +9,9 @@ import org.komapper.annotation.KomapperTable
 @KomapperEntityDef(Account::class)
 @KomapperTable("ACCOUNT")
 data class AccountDef(
-    @KomapperId @KomapperColumn("USERID") val username: Nothing,
+    @KomapperId
+    @KomapperColumn("USERID")
+    val username: Nothing,
     @KomapperColumn("EMAIL") val email: Nothing,
     @KomapperColumn("FIRSTNAME") val firstName: Nothing,
     @KomapperColumn("LASTNAME") val lastName: Nothing,
@@ -26,14 +28,18 @@ data class AccountDef(
 @KomapperEntityDef(BannerData::class)
 @KomapperTable("BANNERDATA")
 data class BannerDataDef(
-    @KomapperId @KomapperColumn("FAVCATEGORY") val favouriteCategoryId: Nothing,
+    @KomapperId
+    @KomapperColumn("FAVCATEGORY")
+    val favouriteCategoryId: Nothing,
     @KomapperColumn("BANNERNAME") val bannerName: Nothing,
 )
 
 @KomapperEntityDef(Category::class)
 @KomapperTable("CATEGORY")
 data class CategoryDef(
-    @KomapperId @KomapperColumn("CATID") val categoryId: Nothing,
+    @KomapperId
+    @KomapperColumn("CATID")
+    val categoryId: Nothing,
     @KomapperColumn("NAME") val name: Nothing,
     @KomapperColumn("DESCN") val description: Nothing,
 )
@@ -41,14 +47,18 @@ data class CategoryDef(
 @KomapperEntityDef(Inventory::class)
 @KomapperTable("INVENTORY")
 data class InventoryDef(
-    @KomapperId @KomapperColumn("ITEMID") val itemId: Nothing,
+    @KomapperId
+    @KomapperColumn("ITEMID")
+    val itemId: Nothing,
     @KomapperColumn("QTY") val quantity: Nothing,
 )
 
 @KomapperEntityDef(Item::class)
 @KomapperTable("ITEM")
 data class ItemDef(
-    @KomapperId @KomapperColumn("ITEMID") val itemId: Nothing,
+    @KomapperId
+    @KomapperColumn("ITEMID")
+    val itemId: Nothing,
     @KomapperColumn("PRODUCTID") val productId: Nothing,
     @KomapperColumn("LISTPRICE") val listPrice: Nothing,
     @KomapperColumn("UNITCOST") val unitCost: Nothing,
@@ -64,8 +74,12 @@ data class ItemDef(
 @KomapperEntityDef(LineItem::class)
 @KomapperTable("LINEITEM")
 data class LineItemDef(
-    @KomapperId @KomapperColumn("ORDERID") val orderId: Nothing,
-    @KomapperId @KomapperColumn("LINENUM") val lineNumber: Nothing,
+    @KomapperId
+    @KomapperColumn("ORDERID")
+    val orderId: Nothing,
+    @KomapperId
+    @KomapperColumn("LINENUM")
+    val lineNumber: Nothing,
     @KomapperColumn("ITEMID") val itemId: Nothing,
     @KomapperColumn("QUANTITY") val quantity: Nothing,
     @KomapperColumn("UNITPRICE") val unitPrice: Nothing,
@@ -74,7 +88,8 @@ data class LineItemDef(
 @KomapperEntityDef(Order::class)
 @KomapperTable("ORDERS")
 data class OrderDef(
-    @KomapperId @KomapperColumn("ORDERID")
+    @KomapperId
+    @KomapperColumn("ORDERID")
     @KomapperSequence("ORDERS_SEQ", startWith = 1001, incrementBy = 10)
     val orderId: Nothing,
     @KomapperColumn("USERID") val username: Nothing,
@@ -106,8 +121,12 @@ data class OrderDef(
 @KomapperEntityDef(OrderStatus::class)
 @KomapperTable("ORDERSTATUS")
 data class OrderStatusDef(
-    @KomapperId @KomapperColumn("ORDERID") val orderId: Nothing,
-    @KomapperId @KomapperColumn("LINENUM") val lineNumber: Nothing,
+    @KomapperId
+    @KomapperColumn("ORDERID")
+    val orderId: Nothing,
+    @KomapperId
+    @KomapperColumn("LINENUM")
+    val lineNumber: Nothing,
     @KomapperColumn("TIMESTAMP") val timestamp: Nothing,
     @KomapperColumn("STATUS") val status: Nothing,
 )
@@ -115,7 +134,9 @@ data class OrderStatusDef(
 @KomapperEntityDef(Product::class)
 @KomapperTable("PRODUCT")
 data class ProductDef(
-    @KomapperId @KomapperColumn("PRODUCTID") val productId: Nothing,
+    @KomapperId
+    @KomapperColumn("PRODUCTID")
+    val productId: Nothing,
     @KomapperColumn("CATEGORY") val categoryId: Nothing,
     @KomapperColumn("NAME") val name: Nothing,
     @KomapperColumn("DESCN") val description: Nothing,
@@ -124,7 +145,9 @@ data class ProductDef(
 @KomapperEntityDef(Profile::class)
 @KomapperTable("PROFILE")
 data class ProfileDef(
-    @KomapperId @KomapperColumn("USERID") val username: Nothing,
+    @KomapperId
+    @KomapperColumn("USERID")
+    val username: Nothing,
     @KomapperColumn("LANGPREF") val languagePreference: Nothing,
     @KomapperColumn("FAVCATEGORY") val favouriteCategoryId: Nothing,
     @KomapperColumn("MYLISTOPT") val listOption: Nothing,
@@ -134,6 +157,8 @@ data class ProfileDef(
 @KomapperEntityDef(SignOn::class)
 @KomapperTable("SIGNON")
 data class SignOnDef(
-    @KomapperId @KomapperColumn("USERNAME") val username: Nothing,
+    @KomapperId
+    @KomapperColumn("USERNAME")
+    val username: Nothing,
     @KomapperColumn("PASSWORD", masking = true) val password: Nothing,
 )

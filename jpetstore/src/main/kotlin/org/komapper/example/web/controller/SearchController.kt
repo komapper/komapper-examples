@@ -15,7 +15,7 @@ class SearchController(private val productService: ProductService) {
     @GetMapping
     fun search(
         @RequestParam(required = false, defaultValue = "") keyword: String?,
-        model: Model
+        model: Model,
     ): String {
         val productList = productService.getProductListByKeywords(keyword!!)
         model.addAttribute("productList", productList)

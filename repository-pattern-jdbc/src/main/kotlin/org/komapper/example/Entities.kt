@@ -10,7 +10,7 @@ import java.time.LocalDate
 data class Address(
     val addressId: Int = 0,
     val street: String,
-    val version: Int = 0
+    val version: Int = 0,
 )
 
 @KomapperEntityDef(Address::class)
@@ -19,7 +19,7 @@ data class AddressDef(
     @KomapperAutoIncrement
     val addressId: Nothing,
     @KomapperVersion
-    val version: Nothing
+    val version: Nothing,
 )
 
 data class Employee(

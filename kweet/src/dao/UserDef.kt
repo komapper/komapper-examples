@@ -14,5 +14,5 @@ data class UserDef(
     val email: Nothing,
     val displayName: Nothing,
     @KomapperColumn(masking = true)
-    val passwordHash: Nothing
+    val passwordHash: Nothing,
 )

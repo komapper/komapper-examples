@@ -20,7 +20,6 @@ import org.komapper.r2dbc.R2dbcDatabase
  * Register routes for the [PostNew] route '/post-new'
  */
 fun Route.postNew(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
-
     /**
      * A GET request returns a page with a form to post a new Kweet in the case the user
      * is logged also generating a [code] token to prevent.
@@ -41,8 +40,8 @@ fun Route.postNew(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> S
                     FreeMarkerContent(
                         "new-kweet.ftl",
                         mapOf("user" to user, "date" to date, "code" to code),
-                        user.userId
-                    )
+                        user.userId,
+                    ),
                 )
             }
         }

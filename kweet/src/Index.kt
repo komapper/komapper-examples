@@ -36,8 +36,8 @@ fun Route.index(db: R2dbcDatabase, dao: DAOFacade) {
                 FreeMarkerContent(
                     "index.ftl",
                     mapOf("top" to top, "user" to user),
-                    etag.toString()
-                )
+                    etag.toString(),
+                ),
             )
         }
     }

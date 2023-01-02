@@ -28,7 +28,7 @@ class ItemRepository(private val db: JdbcDatabase) {
             ItemAggregate(
                 item = it,
                 inventory = store[inv].single(),
-                product = store[p].single()
+                product = store[p].single(),
             )
         }
     }

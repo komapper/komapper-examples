@@ -42,7 +42,7 @@ class OrderRepository(private val db: JdbcDatabase) {
                 order = it,
                 orderStatus = store[os].first(),
                 lineItemSet = store[li],
-                lineItem_product = store.oneToOne(li, p)
+                lineItem_product = store.oneToOne(li, p),
             )
         }
     }

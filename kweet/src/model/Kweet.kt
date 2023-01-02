@@ -8,5 +8,5 @@ data class Kweet(
     val userId: String,
     val text: String,
     val date: LocalDateTime,
-    val replyTo: Int?
+    val replyTo: Int?,
 ) : Serializable

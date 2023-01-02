@@ -16,19 +16,19 @@ import org.komapper.jdbc.JdbcDatabase
 data class User(
     val id: String,
     val name: String,
-    val cityId: Int?
+    val cityId: Int?,
 )
 
 data class City(
     val id: Int? = null,
-    val name: String
+    val name: String,
 )
 
 @KomapperEntityDef(User::class)
 @KomapperTable("Users")
 data class UserDef(
     @KomapperId
-    val id: Nothing
+    val id: Nothing,
 )
 
 @KomapperEntityDef(City::class)
@@ -36,7 +36,7 @@ data class UserDef(
 data class CityDef(
     @KomapperId
     @KomapperAutoIncrement
-    val id: Nothing
+    val id: Nothing,
 )
 
 fun main() {

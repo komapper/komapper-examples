@@ -13,7 +13,7 @@ import java.time.LocalDateTime
 @Service
 class OrderService(
     private val orderRepository: OrderRepository,
-    private val accountRepository: AccountRepository
+    private val accountRepository: AccountRepository,
 ) {
 
     fun executeOrder(username: String, cart: Cart) {

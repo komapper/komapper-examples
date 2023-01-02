@@ -96,10 +96,10 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
                         "register.ftl",
                         mapOf(
                             "pageUser" to User(location.userId, location.email, location.displayName, ""),
-                            "error" to location.error
+                            "error" to location.error,
                         ),
-                        ""
-                    )
+                        "",
+                    ),
                 )
             }
         }
