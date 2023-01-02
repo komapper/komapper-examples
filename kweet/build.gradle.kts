@@ -61,9 +61,6 @@ kotlin {
     sourceSets.test {
         kotlin.srcDirs("test")
     }
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
-    }
 }
 
 sourceSets {
