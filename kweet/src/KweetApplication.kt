@@ -1,10 +1,9 @@
-@file:OptIn(KtorExperimentalLocationsAPI::class)
-
 package io.ktor.samples.kweet
 
 import freemarker.cache.ClassTemplateLoader
 import freemarker.template.Configuration.VERSION_2_3_31
 import io.ktor.http.HttpHeaders
+import io.ktor.resources.Resource
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.samples.kweet.dao.DAOFacadeKomapper
 import io.ktor.samples.kweet.model.User
@@ -12,23 +11,21 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.install
 import io.ktor.server.freemarker.FreeMarker
-import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.Location
-import io.ktor.server.locations.Locations
-import io.ktor.server.locations.locations
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.conditionalheaders.ConditionalHeaders
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.plugins.partialcontent.PartialContent
 import io.ktor.server.request.header
 import io.ktor.server.request.host
-import io.ktor.server.request.port
+import io.ktor.server.resources.Resources
+import io.ktor.server.resources.href
 import io.ktor.server.response.respondRedirect
 import io.ktor.server.routing.routing
 import io.ktor.server.sessions.SessionTransportTransformerMessageAuthentication
 import io.ktor.server.sessions.Sessions
 import io.ktor.server.sessions.cookie
 import io.ktor.util.hex
+import kotlinx.serialization.Serializable
 import no.api.freemarker.java8.Java8ObjectWrapper
 import org.komapper.r2dbc.R2dbcDatabase
 import java.io.File
@@ -38,25 +35,31 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 /*
- * Classes used for the locations feature to build urls and register routes.
+ * Classes are used by the Resources plugin to build URLs and register routes.
  */
 
-@Location("/")
+@Serializable
+@Resource("/")
 class Index()
 
-@Location("/post-new")
+@Serializable
+@Resource("/post-new")
 class PostNew()
 
-@Location("/kweet/{id}/delete")
+@Serializable
+@Resource("/kweet/{id}/delete")
 class KweetDelete(val id: Int)
 
-@Location("/kweet/{id}")
+@Serializable
+@Resource("/kweet/{id}")
 data class ViewKweet(val id: Int)
 
-@Location("/user/{user}")
+@Serializable
+@Resource("/user/{user}")
 data class UserPage(val user: String)
 
-@Location("/register")
+@Serializable
+@Resource("/register")
 data class Register(
     val userId: String = "",
     val displayName: String = "",
@@ -64,10 +67,12 @@ data class Register(
     val error: String = "",
 )
 
-@Location("/login")
+@Serializable
+@Resource("/login")
 data class Login(val userId: String = "", val error: String = "")
 
-@Location("/logout")
+@Serializable
+@Resource("/logout")
 class Logout()
 
 /**
@@ -130,9 +135,9 @@ fun Application.mainWithDependencies(db: R2dbcDatabase, dao: DAOFacade) {
     install(ConditionalHeaders)
     // Supports for Range, Accept-Range and Content-Range headers
     install(PartialContent)
-    // Allows to use classes annotated with @Location to represent URLs.
+    // Allows using classes annotated with @Resource to represent URLs.
     // They are typed, can be constructed to generate URLs, and can be used to register routes.
-    install(Locations)
+    install(Resources)
     // Adds support to generate templated responses using FreeMarker.
     // We configure it specifying the path inside the resources to use to get the template files.
     // You can use <!-- @ftlvariable --> to annotate types inside the templates
@@ -180,15 +185,11 @@ fun hash(password: String): String {
 }
 
 /**
- * Allows to respond with a absolute redirect from a typed [location] instance of a class annotated
- * with [Location] using the Locations feature.
+ * Allows responding with a relative redirect to a typed instance of a class annotated
+ * with @Resource using the Resources plugin.
  */
-suspend fun ApplicationCall.redirect(location: Any) {
-    val host = request.host()
-    val portSpec = request.port().let { if (it == 80) "" else ":$it" }
-    val address = host + portSpec
-
-    respondRedirect("http://$address${application.locations.href(location)}")
+suspend inline fun <reified T : Any> ApplicationCall.redirect(resource: T) {
+    respondRedirect(application.href(resource))
 }
 
 /**
@@ -205,12 +206,7 @@ fun ApplicationCall.securityCode(date: Long, user: User, hashFunction: (String) 
  */
 fun ApplicationCall.verifyCode(date: Long, user: User, code: String, hashFunction: (String) -> String) =
     securityCode(date, user, hashFunction) == code &&
-        (System.currentTimeMillis() - date).let {
-            it > 0 && it < TimeUnit.MILLISECONDS.convert(
-                2,
-                TimeUnit.HOURS,
-            )
-        }
+        (System.currentTimeMillis() - date).let { it > 0 && it < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS) }
 
 /**
  * Obtains the [refererHost] from the [HttpHeaders.Referrer] header, to check it to prevent CSRF attacks

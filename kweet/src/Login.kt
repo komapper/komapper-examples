@@ -1,15 +1,12 @@
-@file:OptIn(KtorExperimentalLocationsAPI::class)
-
 package io.ktor.samples.kweet
 
 import io.ktor.http.Parameters
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.server.application.call
 import io.ktor.server.freemarker.FreeMarkerContent
-import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.get
-import io.ktor.server.locations.post
 import io.ktor.server.request.receive
+import io.ktor.server.resources.get
+import io.ktor.server.resources.post
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.clear
@@ -26,7 +23,7 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
      * A GET request to the [Login], would respond with the login page
      * (unless the user is already logged in, in which case it would redirect to the user's page)
      */
-    get<Login> { location ->
+    get<Login> { resource ->
         db.withTransaction {
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
 
@@ -36,7 +33,7 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
                 call.respond(
                     FreeMarkerContent(
                         "login.ftl",
-                        mapOf("userId" to location.userId, "error" to location.error),
+                        mapOf("userId" to resource.userId, "error" to resource.error),
                         "",
                     ),
                 )

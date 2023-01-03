@@ -1,5 +1,3 @@
-@file:OptIn(KtorExperimentalLocationsAPI::class)
-
 package io.ktor.samples.kweet
 
 import io.ktor.http.Parameters
@@ -9,10 +7,9 @@ import io.ktor.server.application.application
 import io.ktor.server.application.call
 import io.ktor.server.application.log
 import io.ktor.server.freemarker.FreeMarkerContent
-import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.get
-import io.ktor.server.locations.post
 import io.ktor.server.request.receive
+import io.ktor.server.resources.get
+import io.ktor.server.resources.post
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
@@ -33,7 +30,7 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
      * - On success, it generates a new [User]. But instead of storing the password plain text,
      *   it stores a hash of the password.
      */
-    post<Register> { location ->
+    post<Register> { resource ->
         db.withTransaction { _ ->
             // get current from session data if any
             val user = call.sessions.get<KweetSession>()?.let { dao.user(it.userId) }
@@ -43,10 +40,10 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
             // receive post data
             // TODO: use conneg when it's ready and `call.receive<Register>()`
             val registration = call.receive<Parameters>()
-            val userId = registration["userId"] ?: return@withTransaction call.redirect(location)
-            val password = registration["password"] ?: return@withTransaction call.redirect(location)
-            val displayName = registration["displayName"] ?: return@withTransaction call.redirect(location)
-            val email = registration["email"] ?: return@withTransaction call.redirect(location)
+            val userId = registration["userId"] ?: return@withTransaction call.redirect(resource)
+            val password = registration["password"] ?: return@withTransaction call.redirect(resource)
+            val displayName = registration["displayName"] ?: return@withTransaction call.redirect(resource)
+            val email = registration["email"] ?: return@withTransaction call.redirect(resource)
 
             // prepare location class for error if any
             val error = Register(userId, displayName, email)

@@ -1,15 +1,12 @@
-@file:OptIn(KtorExperimentalLocationsAPI::class)
-
 package io.ktor.samples.kweet
 
 import io.ktor.http.Parameters
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.server.application.call
 import io.ktor.server.freemarker.FreeMarkerContent
-import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.get
-import io.ktor.server.locations.post
 import io.ktor.server.request.receive
+import io.ktor.server.resources.get
+import io.ktor.server.resources.post
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
