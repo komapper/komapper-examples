@@ -1,12 +1,9 @@
-@file:OptIn(KtorExperimentalLocationsAPI::class)
-
 package io.ktor.samples.kweet
 
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.server.application.call
 import io.ktor.server.freemarker.FreeMarkerContent
-import io.ktor.server.locations.KtorExperimentalLocationsAPI
-import io.ktor.server.locations.get
+import io.ktor.server.resources.get
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.sessions.get
@@ -17,7 +14,7 @@ import org.komapper.r2dbc.R2dbcDatabase
  * Register the index route of the website.
  */
 fun Route.index(db: R2dbcDatabase, dao: DAOFacade) {
-    // Uses the location feature to register a get route for '/'.
+    // Uses the Resources plugin to register a get route for '/'.
     get<Index> { _ ->
         db.withTransaction { _ ->
             // Tries to get the user from the session (null if failure)

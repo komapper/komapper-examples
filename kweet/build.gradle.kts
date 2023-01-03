@@ -2,6 +2,7 @@ plugins {
     application
     idea
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 val ktorVersion: String by project
@@ -13,7 +14,6 @@ application {
 
 repositories {
     mavenCentral()
-    maven(url = "https://maven.pkg.jetbrains.space/public/p/ktor/eap")
 }
 
 dependencies {
@@ -32,7 +32,8 @@ dependencies {
 
     implementation("io.ktor:ktor-server-netty")
     implementation("io.ktor:ktor-server-freemarker")
-    implementation("io.ktor:ktor-server-locations")
+    implementation("io.ktor:ktor-server-resources")
+    implementation("io.ktor:ktor-server-sessions")
     implementation("io.ktor:ktor-server-conditional-headers")
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-server-partial-content")
@@ -54,27 +55,16 @@ idea {
     }
 }
 
-kotlin {
-    sourceSets.main {
-        kotlin.srcDirs("src")
-    }
-    sourceSets.test {
-        kotlin.srcDirs("test")
-    }
-}
-
 sourceSets {
     main {
+        kotlin.srcDirs("src")
         resources.srcDir("resources")
+    }
+    test {
+        kotlin.srcDirs("test")
     }
 }
 
 ksp {
     arg("komapper.namingStrategy", "lower_snake_case")
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
-    }
 }
