@@ -6,7 +6,7 @@ buildscript {
         classpath(platform("org.testcontainers:testcontainers-bom:1.17.6"))
         classpath("org.testcontainers:mysql")
         classpath("org.testcontainers:postgresql")
-        classpath("mysql:mysql-connector-java:8.0.31")
+        classpath("mysql:mysql-connector-java:8.0.32")
         classpath("org.postgresql:postgresql:42.5.1")
     }
 }
