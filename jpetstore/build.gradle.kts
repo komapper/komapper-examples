@@ -9,14 +9,6 @@ apply(plugin = "io.spring.dependency-management")
 
 val komapperVersion: String by project
 
-idea {
-    module {
-        sourceDirs = sourceDirs + file("build/generated/ksp/main/kotlin")
-        testSourceDirs = testSourceDirs + file("build/generated/ksp/test/kotlin")
-        generatedSourceDirs = generatedSourceDirs + file("build/generated/ksp/main/kotlin") + file("build/generated/ksp/test/kotlin")
-    }
-}
-
 springBoot {
     mainClass.set("org.komapper.example.ApplicationKt")
 }
