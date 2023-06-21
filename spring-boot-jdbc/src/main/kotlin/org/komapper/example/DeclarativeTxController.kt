@@ -23,7 +23,7 @@ class DeclarativeTxController(private val database: JdbcDatabase) {
 
     @RequestMapping(params = ["text"])
     fun add(@RequestParam text: String): Message {
-        val message = Message(text = text)
+        val message = Message(text = text, priority = Priority.LOW)
         return database.runQuery {
             val m = Meta.message
             QueryDsl.insert(m).single(message)

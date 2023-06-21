@@ -1,2 +1,2 @@
-INSERT INTO message (text) VALUES ('Hello')
-INSERT INTO message (text) VALUES ('World')
+INSERT INTO message (text, priority) VALUES ('Hello', 'H')
+INSERT INTO message (text, priority) VALUES ('World', 'L')

@@ -23,7 +23,7 @@ class ImperativeTxController(private val database: JdbcDatabase) {
 
     @RequestMapping(params = ["text"])
     fun add(@RequestParam text: String): Message = database.withTransaction {
-        val message = Message(text = text)
+        val message = Message(text = text, priority = Priority.LOW)
         database.runQuery {
             val m = Meta.message
             QueryDsl.insert(m).single(message)

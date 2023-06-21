@@ -42,9 +42,9 @@ class ApplicationTest {
         assertEquals(3, messages!!.size)
         assertEquals(
             listOf(
-                Message(1, "Hello"),
-                Message(2, "World"),
-                Message(3, "Hi!"),
+                Message(1, "Hello", Priority.HIGH),
+                Message(2, "World", Priority.LOW),
+                Message(3, "Hi!", Priority.LOW),
             ),
             messages,
         )
