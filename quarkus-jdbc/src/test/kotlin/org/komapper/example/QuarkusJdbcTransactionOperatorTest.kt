@@ -1,6 +1,8 @@
 package org.komapper.example
 
 import io.quarkus.test.junit.QuarkusTest
+import jakarta.inject.Inject
+import jakarta.transaction.TransactionManager
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.query.single
@@ -9,9 +11,7 @@ import org.komapper.jdbc.JdbcDatabase
 import org.komapper.jdbc.JdbcDialects
 import org.komapper.jdbc.JdbcSession
 import org.komapper.quarkus.jdbc.QuarkusJdbcTransactionSession
-import javax.inject.Inject
 import javax.sql.DataSource
-import javax.transaction.TransactionManager
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test

@@ -63,12 +63,12 @@ subprojects {
 }
 
 // TODO Remove this workaround in the future
-// https://github.com/quarkusio/quarkus/issues/29698#issuecomment-1368073417
+// https://github.com/quarkusio/quarkus/issues/29698#issuecomment-1671861607
 project.afterEvaluate {
-    tasks.findByPath("quarkus-jdbc:quarkusGenerateCode")?.let { task ->
-        task.setDependsOn(task.dependsOn.map { it as Provider<*> }.filter { it.get() !is ProcessResources })
+    getTasksByName("quarkusGenerateCode", true).forEach { task ->
+        task.setDependsOn(task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
     }
-    tasks.findByPath("quarkus-jdbc:quarkusGenerateCodeDev")?.let { task ->
-        task.setDependsOn(task.dependsOn.map { it as Provider<*> }.filter { it.get() !is ProcessResources })
+    getTasksByName("quarkusGenerateCodeDev", true).forEach { task ->
+        task.setDependsOn(task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
     }
 }
