@@ -1,13 +1,13 @@
 package org.komapper.example
 
 import io.quarkus.runtime.StartupEvent
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.event.Observes
+import jakarta.inject.Inject
 import org.komapper.core.dsl.Meta
 import org.komapper.core.dsl.QueryDsl
 import org.komapper.core.dsl.query.andThen
 import org.komapper.jdbc.JdbcDatabase
-import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.event.Observes
-import javax.inject.Inject
 
 @ApplicationScoped
 class Startup @Inject constructor(private val database: JdbcDatabase) {
