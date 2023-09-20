@@ -37,7 +37,7 @@ dependencies {
     implementation("com.h2database:h2:2.2.224")
     implementation("org.webjars:jquery:3.7.1")
     implementation("org.webjars:webjars-locator:0.47")
-    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.2.1")
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
