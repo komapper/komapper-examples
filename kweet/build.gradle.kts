@@ -38,7 +38,7 @@ dependencies {
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-server-partial-content")
     implementation("io.ktor:ktor-server-call-logging")
-    implementation("org.freemarker:freemarker:2.3.32")
+    implementation("org.freemarker:freemarker:2.3.33")
     implementation("no.api.freemarker:freemarker-java8:2.1.0")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.6")
 
