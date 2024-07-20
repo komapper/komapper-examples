@@ -34,7 +34,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
-    implementation("com.h2database:h2:2.2.224")
+    implementation("com.h2database:h2:2.3.230")
     implementation("org.webjars:jquery:3.7.1")
     implementation("org.webjars:webjars-locator:0.52")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0")
