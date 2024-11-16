@@ -3,8 +3,6 @@ package io.ktor.samples.kweet
 import io.ktor.http.Parameters
 import io.ktor.samples.kweet.dao.DAOFacade
 import io.ktor.samples.kweet.model.User
-import io.ktor.server.application.application
-import io.ktor.server.application.call
 import io.ktor.server.application.log
 import io.ktor.server.freemarker.FreeMarkerContent
 import io.ktor.server.request.receive
@@ -12,6 +10,7 @@ import io.ktor.server.resources.get
 import io.ktor.server.resources.post
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
+import io.ktor.server.routing.application
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set

@@ -11,7 +11,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.install
 import io.ktor.server.freemarker.FreeMarker
-import io.ktor.server.plugins.callloging.CallLogging
+import io.ktor.server.plugins.calllogging.CallLogging
 import io.ktor.server.plugins.conditionalheaders.ConditionalHeaders
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.plugins.partialcontent.PartialContent
@@ -78,6 +78,7 @@ class Logout()
 /**
  * Represents a session in this site containing the userId.
  */
+@Serializable
 data class KweetSession(val userId: String)
 
 /**
