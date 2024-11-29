@@ -8,7 +8,6 @@ import java.util.StringTokenizer
 
 @Service
 class ProductService(private val productRepository: ProductRepository) {
-
     fun getProductListByCategory(categoryId: String): List<Product> {
         return productRepository.fetchProductListByCategoryId(categoryId)
     }

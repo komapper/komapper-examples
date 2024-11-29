@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Transactional
 class ImperativeTxController(private val database: JdbcDatabase) {
-
     @RequestMapping
     fun list(): List<Message> = database.withTransaction {
         database.runQuery {
@@ -22,7 +21,9 @@ class ImperativeTxController(private val database: JdbcDatabase) {
     }
 
     @RequestMapping(params = ["text"])
-    fun add(@RequestParam text: String): Message = database.withTransaction {
+    fun add(
+        @RequestParam text: String,
+    ): Message = database.withTransaction {
         val message = Message(text = text)
         database.runQuery {
             val m = Meta.message

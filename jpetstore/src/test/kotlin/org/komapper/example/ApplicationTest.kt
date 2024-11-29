@@ -12,7 +12,6 @@ internal class ApplicationTest(
     @Autowired private val restTemplate: TestRestTemplate,
     @LocalServerPort private val port: Int,
 ) {
-
     @Test
     fun fish() {
         Assertions.assertThat(

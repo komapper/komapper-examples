@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.komapper.core.dsl.Meta
 
 class AddressTest {
-
     @Test
     fun test() {
         assertNotNull(Meta.address)

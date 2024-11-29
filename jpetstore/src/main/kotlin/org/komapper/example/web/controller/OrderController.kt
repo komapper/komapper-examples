@@ -31,7 +31,10 @@ class OrderController(private val orderService: OrderService, private val cart: 
     }
 
     @PostMapping
-    fun confirm(@AuthenticationPrincipal user: User, redirectAttributes: RedirectAttributes): String {
+    fun confirm(
+        @AuthenticationPrincipal user: User,
+        redirectAttributes: RedirectAttributes,
+    ): String {
         if (cart.isEmpty) {
             return fillMessageAndRedirectToIndex(redirectAttributes)
         }

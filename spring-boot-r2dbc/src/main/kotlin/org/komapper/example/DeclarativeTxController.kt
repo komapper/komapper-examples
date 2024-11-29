@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Transactional
 class DeclarativeTxController(private val database: R2dbcDatabase) {
-
     @RequestMapping
     suspend fun list(): Flow<Message> {
         return database.flowQuery {
@@ -23,7 +22,9 @@ class DeclarativeTxController(private val database: R2dbcDatabase) {
     }
 
     @RequestMapping(params = ["text"])
-    suspend fun add(@RequestParam text: String): Message {
+    suspend fun add(
+        @RequestParam text: String,
+    ): Message {
         val message = Message(text = text)
         return database.runQuery {
             val m = Meta.message

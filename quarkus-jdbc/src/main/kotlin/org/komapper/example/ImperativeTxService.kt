@@ -16,23 +16,26 @@ import org.komapper.jdbc.JdbcDatabase
 @Produces("application/json")
 @Consumes("application/json")
 @ApplicationScoped
-class ImperativeTxService @Inject constructor(private val database: JdbcDatabase) {
+class ImperativeTxService
+    @Inject
+    constructor(private val database: JdbcDatabase) {
+        @GET
+        fun list(): List<Message> = database.withTransaction {
+            database.runQuery {
+                val m = Meta.message
+                QueryDsl.from(m).orderBy(m.id.desc())
+            }
+        }
 
-    @GET
-    fun list(): List<Message> = database.withTransaction {
-        database.runQuery {
-            val m = Meta.message
-            QueryDsl.from(m).orderBy(m.id.desc())
+        @GET
+        @Path("/add")
+        fun add(
+            @QueryParam("text") text: String?,
+        ): Message = database.withTransaction {
+            val message = Message(text = text ?: "empty")
+            database.runQuery {
+                val m = Meta.message
+                QueryDsl.insert(m).single(message)
+            }
         }
     }
-
-    @GET
-    @Path("/add")
-    fun add(@QueryParam("text") text: String?): Message = database.withTransaction {
-        val message = Message(text = text ?: "empty")
-        database.runQuery {
-            val m = Meta.message
-            QueryDsl.insert(m).single(message)
-        }
-    }
-}

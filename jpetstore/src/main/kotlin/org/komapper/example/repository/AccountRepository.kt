@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class AccountRepository(private val db: JdbcDatabase) {
-
     private val a = Meta.account
     private val p = Meta.profile
     private val s = Meta.signOn

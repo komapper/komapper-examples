@@ -15,7 +15,10 @@ import org.springframework.web.server.ResponseStatusException
 @Transactional
 class ProductController(private val productService: ProductService) {
     @GetMapping("/{productId}")
-    fun product(@PathVariable productId: String, model: Model): String {
+    fun product(
+        @PathVariable productId: String,
+        model: Model,
+    ): String {
         val productAggregate = productService.getProductAggregate(productId)
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "productId=$productId not found")
         model.addAttribute("product", productAggregate.product)

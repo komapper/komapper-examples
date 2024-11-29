@@ -34,7 +34,6 @@ import kotlin.test.assertTrue
  * Uses [testApp] in test methods to simplify the testing.
  */
 class KweetApplicationTest {
-
     private val db = object : R2dbcDatabase by mockk(relaxed = true) {
         private val operator = mockk<CoroutineTransactionOperator>(relaxed = true)
         override suspend fun <R> withTransaction(

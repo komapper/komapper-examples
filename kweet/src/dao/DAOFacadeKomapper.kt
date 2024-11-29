@@ -16,7 +16,6 @@ import java.time.LocalDateTime
 class DAOFacadeKomapper(
     private val db: R2dbcDatabase,
 ) : DAOFacade {
-
     private val k = Meta.kweet
     private val k2 = Meta.kweet2
     private val u = Meta.user

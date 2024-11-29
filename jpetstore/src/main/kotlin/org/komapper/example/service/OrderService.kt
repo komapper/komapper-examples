@@ -15,7 +15,6 @@ class OrderService(
     private val orderRepository: OrderRepository,
     private val accountRepository: AccountRepository,
 ) {
-
     fun executeOrder(username: String, cart: Cart) {
         val order = orderRepository.insertOrder(createOrder(username, cart))
         val lineItemList = orderRepository.insertLineItemList(createLineItemList(order, cart))

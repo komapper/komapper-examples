@@ -10,12 +10,15 @@ import org.komapper.core.dsl.query.andThen
 import org.komapper.jdbc.JdbcDatabase
 
 @ApplicationScoped
-class Startup @Inject constructor(private val database: JdbcDatabase) {
-
-    fun startup(@Observes event: StartupEvent) {
-        val q1 = QueryDsl.create(Meta.message)
-        val q2 = QueryDsl.insert(Meta.message)
-            .multiple(Message(text = "Hello"), Message(text = "World!"))
-        database.runQuery(q1.andThen(q2))
+class Startup
+    @Inject
+    constructor(private val database: JdbcDatabase) {
+        fun startup(
+            @Observes event: StartupEvent,
+        ) {
+            val q1 = QueryDsl.create(Meta.message)
+            val q2 = QueryDsl.insert(Meta.message)
+                .multiple(Message(text = "Hello"), Message(text = "World!"))
+            database.runQuery(q1.andThen(q2))
+        }
     }
-}

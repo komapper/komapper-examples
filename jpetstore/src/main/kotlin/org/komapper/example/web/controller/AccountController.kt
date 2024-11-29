@@ -28,7 +28,6 @@ class AccountController(
     private val passwordEncoder: PasswordEncoder,
     private val passwordValidator: PasswordValidator,
 ) {
-
     @InitBinder("accountAddForm")
     fun initBinder(binder: WebDataBinder) {
         binder.addValidators(passwordValidator)
@@ -66,7 +65,10 @@ class AccountController(
     }
 
     @GetMapping("/edit")
-    fun edit(model: Model, @AuthenticationPrincipal user: User): String {
+    fun edit(
+        model: Model,
+        @AuthenticationPrincipal user: User,
+    ): String {
         val aggregate = accountService.getAccountAggregate(user.username)
         val accountForm = createAccountEditForm(aggregate)
         return modelAndViewForEdit(model, accountForm, user)
