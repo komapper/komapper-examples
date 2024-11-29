@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class CategoryRepository(private val db: JdbcDatabase) {
-
     private val c = Meta.category
 
     fun fetchCategory(categoryId: String): Category? {

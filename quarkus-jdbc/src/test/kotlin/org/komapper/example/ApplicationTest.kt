@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 
 @QuarkusTest
 class ApplicationTest {
-
     @Test
     fun declarative() {
         RestAssured.given()

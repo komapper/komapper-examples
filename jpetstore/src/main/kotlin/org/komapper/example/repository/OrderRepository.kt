@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class OrderRepository(private val db: JdbcDatabase) {
-
     private val o = Meta.order
     private val os = Meta.orderStatus
     private val li = Meta.lineItem

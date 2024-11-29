@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ItemRepository(private val db: JdbcDatabase) {
-
     private val item = Meta.item
     private val inv = Meta.inventory
     private val p = Meta.product

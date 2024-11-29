@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class AccountService(private val accountRepository: AccountRepository) : UserDetailsService {
-
     fun getAccountAggregate(username: String): AccountAggregate {
         return accountRepository.fetchAccountAggregate(username)
     }

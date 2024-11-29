@@ -33,7 +33,11 @@ class CartController(private val itemService: ItemService, private val cart: Car
     }
 
     @PostMapping
-    fun updateAll(@Validated cartForm: CartForm, result: BindingResult, model: Model): String {
+    fun updateAll(
+        @Validated cartForm: CartForm,
+        result: BindingResult,
+        model: Model,
+    ): String {
         if (result.hasErrors()) {
             model.addAttribute("cart", cart)
             model.addAttribute("cartForm", cartForm)
@@ -52,7 +56,10 @@ class CartController(private val itemService: ItemService, private val cart: Car
     }
 
     @PostMapping("/item/{itemId}")
-    fun addItem(@PathVariable itemId: String, model: Model): String {
+    fun addItem(
+        @PathVariable itemId: String,
+        model: Model,
+    ): String {
         if (cart.containsItemId(itemId)) {
             cart.incrementQuantity(itemId)
         } else {
@@ -65,7 +72,9 @@ class CartController(private val itemService: ItemService, private val cart: Car
     }
 
     @DeleteMapping("/item/{itemId}")
-    fun removeItem(@PathVariable itemId: String): String {
+    fun removeItem(
+        @PathVariable itemId: String,
+    ): String {
         cart.removeItemById(itemId)
         return "redirect:/cart"
     }

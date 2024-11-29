@@ -11,7 +11,6 @@ import org.komapper.jdbc.JdbcDatabase
 import java.math.BigDecimal
 
 class ExampleRepository(private val db: JdbcDatabase) {
-
     private val d = Meta.department
     private val e = Meta.employee
     private val m = Meta.manager

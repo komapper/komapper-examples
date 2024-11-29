@@ -12,7 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ApplicationTest {
-
     private val restTemplate = TestRestTemplate()
     private val typedReference: ParameterizedTypeReference<List<Message>> =
         object : ParameterizedTypeReference<List<Message>>() {}

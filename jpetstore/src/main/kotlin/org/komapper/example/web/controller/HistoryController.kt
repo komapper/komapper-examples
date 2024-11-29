@@ -17,18 +17,23 @@ import org.springframework.web.server.ResponseStatusException
 @RequestMapping("/history")
 @Transactional
 class HistoryController(private val orderService: OrderService) {
-
     private val logger = LoggerFactory.getLogger(HistoryController::class.java)
 
     @GetMapping
-    fun viewList(model: Model, @AuthenticationPrincipal user: User): String {
+    fun viewList(
+        model: Model,
+        @AuthenticationPrincipal user: User,
+    ): String {
         val orderList = orderService.getOrderList(user.username)
         model.addAttribute("orderList", orderList)
         return "history/list"
     }
 
     @GetMapping("{orderId}")
-    fun viewDetail(@PathVariable orderId: Int, model: Model): String {
+    fun viewDetail(
+        @PathVariable orderId: Int,
+        model: Model,
+    ): String {
         val orderAggregate = orderService.getOrderAggregate(orderId)
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "orderId=$orderId not found")
         model.addAttribute("order", orderAggregate.order)
