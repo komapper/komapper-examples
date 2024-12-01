@@ -1,13 +1,10 @@
 plugins {
-    idea
-    id("org.springframework.boot")
-    id("com.google.devtools.ksp")
-    kotlin("plugin.spring")
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.spring)
 }
 
-apply(plugin = "io.spring.dependency-management")
-
-val komapperVersion: String by project
+apply(plugin = libs.plugins.spring.dependency.management.get().pluginId)
 
 springBoot {
     mainClass.set("org.komapper.example.ApplicationKt")
@@ -20,26 +17,26 @@ repositories {
 }
 
 dependencies {
-    platform("org.komapper:komapper-platform:$komapperVersion").let {
+    platform(libs.komapper.platform).let {
         implementation(it)
         ksp(it)
     }
 
-    implementation("org.komapper:komapper-spring-boot-starter-jdbc")
-    implementation("org.komapper:komapper-dialect-h2-jdbc")
-    ksp("org.komapper:komapper-processor")
+    implementation(libs.komapper.spring.boot.starter.jdbc)
+    implementation(libs.komapper.dialect.h2.jdbc)
+    ksp(libs.komapper.processor)
 
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
-    implementation("com.h2database:h2:2.3.232")
-    implementation("org.webjars:jquery:3.7.1")
-    implementation("org.webjars:webjars-locator:0.52")
-    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    implementation(libs.spring.boot.starter.thymeleaf)
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.security)
+    implementation(libs.spring.boot.starter.validation)
+    implementation(libs.thymeleaf.extras.springsecurity6)
+    implementation(libs.jdbc.h2)
+    implementation(libs.webjars.jquery)
+    implementation(libs.webjars.locator)
+    implementation(libs.thymeleaf.layout.dialect)
+    developmentOnly(libs.spring.boot.devtools)
+    testImplementation(libs.spring.boot.starter.test) {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
 }

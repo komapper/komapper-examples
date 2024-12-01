@@ -3,26 +3,27 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(platform("org.testcontainers:testcontainers-bom:1.20.4"))
-        classpath("org.testcontainers:mysql")
-        classpath("org.testcontainers:postgresql")
-        classpath("mysql:mysql-connector-java:8.0.33")
-        classpath("org.postgresql:postgresql:42.7.4")
+        classpath(platform(libs.testcontainers.bom))
+        classpath(libs.testcontainers.mysql)
+        classpath(libs.testcontainers.postgresql)
+        classpath(libs.jdbc.mysql)
+        classpath(libs.jdbc.postgresql)
     }
 }
 
 plugins {
     application
-    idea
-    id("com.google.devtools.ksp")
-    id("org.komapper.gradle")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.komapper)
 }
 
-val komapperVersion: String by project
-
 dependencies {
-    implementation("org.komapper:komapper-starter-jdbc:$komapperVersion")
-    ksp("org.komapper:komapper-processor:$komapperVersion")
+    platform(libs.komapper.platform).let {
+        implementation(it)
+        ksp(it)
+    }
+    implementation(libs.komapper.starter.jdbc)
+    ksp(libs.komapper.processor)
 }
 
 komapper {

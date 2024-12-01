@@ -1,12 +1,8 @@
 plugins {
     application
-    idea
-    id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
-
-val ktorVersion: String by project
-val komapperVersion: String by project
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
@@ -17,34 +13,34 @@ repositories {
 }
 
 dependencies {
-    platform("org.komapper:komapper-platform:$komapperVersion").let {
+    platform(libs.komapper.platform).let {
         implementation(it)
         ksp(it)
     }
-    platform("io.ktor:ktor-bom:$ktorVersion").let {
+    platform(libs.ktor.bom).let {
         implementation(it)
         testImplementation(it)
     }
 
-    implementation("org.komapper:komapper-starter-r2dbc")
-    implementation("org.komapper:komapper-dialect-h2-r2dbc")
-    ksp("org.komapper:komapper-processor")
+    implementation(libs.komapper.starter.r2dbc)
+    implementation(libs.komapper.dialect.h2.r2dbc)
+    ksp(libs.komapper.processor)
 
-    implementation("io.ktor:ktor-server-netty")
-    implementation("io.ktor:ktor-server-freemarker")
-    implementation("io.ktor:ktor-server-resources")
-    implementation("io.ktor:ktor-server-sessions")
-    implementation("io.ktor:ktor-server-conditional-headers")
-    implementation("io.ktor:ktor-server-default-headers")
-    implementation("io.ktor:ktor-server-partial-content")
-    implementation("io.ktor:ktor-server-call-logging")
-    implementation("org.freemarker:freemarker:2.3.33")
-    implementation("no.api.freemarker:freemarker-java8:3.0.0")
-    runtimeOnly("ch.qos.logback:logback-classic:1.5.12")
+    implementation(libs.ktor.server.netty)
+    implementation(libs.ktor.server.freemarker)
+    implementation(libs.ktor.server.resources)
+    implementation(libs.ktor.server.sessions)
+    implementation(libs.ktor.server.conditional.headers)
+    implementation(libs.ktor.server.default.headers)
+    implementation(libs.ktor.server.partial.content)
+    implementation(libs.ktor.server.call.logging)
+    implementation(libs.freemarker)
+    implementation(libs.freemarker.java8)
+    runtimeOnly(libs.logback.classic)
 
-    testImplementation("io.ktor:ktor-server-test-host")
-    testImplementation("io.mockk:mockk:1.13.13")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlin.test)
 }
 
 sourceSets {
