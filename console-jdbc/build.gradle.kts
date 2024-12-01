@@ -1,19 +1,16 @@
 plugins {
     application
-    idea
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
 
-val komapperVersion: String by project
-
 dependencies {
-    platform("org.komapper:komapper-platform:$komapperVersion").let {
+    platform(libs.komapper.platform).let {
         implementation(it)
         ksp(it)
     }
-    implementation("org.komapper:komapper-starter-jdbc")
-    implementation("org.komapper:komapper-dialect-h2-jdbc")
-    ksp("org.komapper:komapper-processor")
+    implementation(libs.komapper.starter.jdbc)
+    implementation(libs.komapper.dialect.h2.jdbc)
+    ksp(libs.komapper.processor)
 }
 
 application {

@@ -1,29 +1,31 @@
 plugins {
     java
-    kotlin("jvm")
-    id("com.diffplug.spotless") version "6.25.0"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.spotless)
 }
 
 val springBootProjects = subprojects.filter {
     it.name.startsWith("spring-boot") || it.name == "jpetstore"
 }
 
-val ktlintVersion: String by project
+// Retain a reference to rootProject.libs to make the version catalog accessible within allprojects and subprojects.
+// See https://github.com/gradle/gradle/issues/16708
+val catalog = libs
 
 allprojects {
     apply(plugin = "base")
-    apply(plugin = "com.diffplug.spotless")
+    apply(plugin = catalog.plugins.spotless.get().pluginId)
 
     spotless {
         kotlin {
-            ktlint(ktlintVersion)
+            ktlint(catalog.ktlint.get().version)
             targetExclude("build/**")
             if (project.name == "codegen") {
                 targetExclude("src/**")
             }
         }
         kotlinGradle {
-            ktlint(ktlintVersion)
+            ktlint(catalog.ktlint.get().version)
         }
     }
 
@@ -46,8 +48,8 @@ subprojects {
         testImplementation(kotlin("test"))
         if (project !in springBootProjects) {
             testImplementation(kotlin("test"))
-            testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
-            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+            testImplementation(catalog.junit.api)
+            testRuntimeOnly(catalog.junit.engine)
         }
     }
 

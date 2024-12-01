@@ -1,0 +1,82 @@
+[versions]
+junit = "5.11.3"
+komapper = "5.0.0"
+kotlin = "2.1.0"
+ksp = "2.1.0-1.0.29"
+quarkus = "3.17.2"
+spring-boot = "3.4.0"
+
+[libraries]
+komapper-platform = { module = "org.komapper:komapper-platform", version.ref = "komapper" }
+komapper-dialect-h2-jdbc = { module = "org.komapper:komapper-dialect-h2-jdbc" }
+komapper-dialect-h2-r2dbc = { module = "org.komapper:komapper-dialect-h2-r2dbc" }
+komapper-dialect-postgresql-jdbc = { module = "org.komapper:komapper-dialect-postgresql-jdbc" }
+komapper-processor = { module = "org.komapper:komapper-processor" }
+komapper-quarkus-jdbc = { module = "org.komapper:komapper-quarkus-jdbc" }
+komapper-starter-jdbc = { module = "org.komapper:komapper-starter-jdbc" }
+komapper-starter-r2dbc = { module = "org.komapper:komapper-starter-r2dbc" }
+komapper-spring-boot-starter-jdbc = { module = "org.komapper:komapper-spring-boot-starter-jdbc" }
+komapper-spring-boot-starter-r2dbc = { module = "org.komapper:komapper-spring-boot-starter-r2dbc" }
+
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-starter-thymeleaf = { module = "org.springframework.boot:spring-boot-starter-thymeleaf" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+thymeleaf-extras-springsecurity6 = { module = "org.thymeleaf.extras:thymeleaf-extras-springsecurity6" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+
+ktor-bom = { module = "io.ktor:ktor-bom", version = "3.0.1" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty" }
+ktor-server-freemarker = { module = "io.ktor:ktor-server-freemarker" }
+ktor-server-resources = { module = "io.ktor:ktor-server-resources" }
+ktor-server-sessions = { module = "io.ktor:ktor-server-sessions" }
+ktor-server-conditional-headers = { module = "io.ktor:ktor-server-conditional-headers" }
+ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers" }
+ktor-server-partial-content = { module = "io.ktor:ktor-server-partial-content" }
+ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host" }
+
+quarkus-bom = { module = "io.quarkus:quarkus-bom", version.ref = "quarkus" }
+quarkus-jdbc-h2 = { module = "io.quarkus:quarkus-jdbc-h2" }
+quarkus-jdbc-postgresql = { module = "io.quarkus:quarkus-jdbc-postgresql" }
+quarkus-junit5 = { module = "io.quarkus:quarkus-junit5" }
+quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin" }
+quarkus-resteasy = { module = "io.quarkus:quarkus-resteasy" }
+quarkus-resteasy-jsonb = { module = "io.quarkus:quarkus-resteasy-jsonb" }
+
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "1.20.4" }
+testcontainers-mysql = { module = "org.testcontainers:mysql" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
+
+freemarker = { module = "org.freemarker:freemarker", version = "2.3.33" }
+freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.0" }
+jdbc-h2 = { module = "com.h2database:h2", version = "2.3.232" }
+jdbc-mysql = { module = "mysql:mysql-connector-java", version = "8.0.33" }
+jdbc-postgresql = { module = "org.postgresql:postgresql", version = "42.7.4" }
+ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version = "1.4.1" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.12" }
+mockk = { module = "io.mockk:mockk", version = "1.13.13" }
+rest-assured = { module = "io.rest-assured:rest-assured", version="5.5.0" }
+thymeleaf-layout-dialect = { module = "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect", version = "3.3.0" }
+webjars-jquery = { module = "org.webjars:jquery", version = "3.7.1" }
+webjars-locator = { module = "org.webjars:webjars-locator", version = "0.52" }
+
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+[plugins]
+komapper = { id = "org.komapper.gradle", version.ref = "komapper" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
+graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.3" }

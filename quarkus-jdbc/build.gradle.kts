@@ -1,30 +1,26 @@
 plugins {
-    idea
-    id("io.quarkus")
-    id("com.google.devtools.ksp")
-    kotlin("plugin.allopen")
+    alias(libs.plugins.quarkus)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.allopen)
 }
 
-val quarkusVersion: String by project
-val komapperVersion: String by project
-
 dependencies {
-    platform("org.komapper:komapper-platform:$komapperVersion").let {
+    platform(libs.komapper.platform).let {
         implementation(it)
         ksp(it)
     }
-    implementation(enforcedPlatform("io.quarkus:quarkus-bom:$quarkusVersion"))
-    implementation("io.quarkus:quarkus-kotlin")
-    implementation("io.quarkus:quarkus-jdbc-postgresql")
-    implementation("io.quarkus:quarkus-resteasy")
-    implementation("io.quarkus:quarkus-resteasy-jsonb")
-    implementation("org.komapper:komapper-quarkus-jdbc")
-    implementation("org.komapper:komapper-dialect-postgresql-jdbc")
-    ksp("org.komapper:komapper-processor")
-    testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("io.rest-assured:rest-assured:5.5.0")
-    testImplementation("io.quarkus:quarkus-jdbc-h2")
-    testImplementation("org.komapper:komapper-dialect-h2-jdbc")
+    implementation(enforcedPlatform(libs.quarkus.bom))
+    implementation(libs.quarkus.kotlin)
+    implementation(libs.quarkus.jdbc.postgresql)
+    implementation(libs.quarkus.resteasy)
+    implementation(libs.quarkus.resteasy.jsonb)
+    implementation(libs.komapper.quarkus.jdbc)
+    implementation(libs.komapper.dialect.postgresql.jdbc)
+    ksp(libs.komapper.processor)
+    testImplementation(libs.quarkus.junit5)
+    testImplementation(libs.rest.assured)
+    testImplementation(libs.quarkus.jdbc.h2)
+    testImplementation(libs.komapper.dialect.h2.jdbc)
 }
 
 ksp {
