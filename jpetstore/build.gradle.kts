@@ -2,9 +2,8 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.spring.dependency.management)
 }
-
-apply(plugin = libs.plugins.spring.dependency.management.get().pluginId)
 
 springBoot {
     mainClass.set("org.komapper.example.ApplicationKt")
