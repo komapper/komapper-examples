@@ -3,9 +3,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.graalvm.buildtools.native)
     alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.spring.dependency.management)
 }
-
-apply(plugin = libs.plugins.spring.dependency.management.get().pluginId)
 
 dependencies {
     platform(libs.komapper.platform).let {
