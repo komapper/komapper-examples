@@ -1,0 +1,6 @@
+# List of "Komapper-related" beans to be loaded by @KomapperJdbcTest/@AutoConfigureKomapperJdbc
+org.komapper.example.repository.AccountRepository
+org.komapper.example.repository.CategoryRepository
+org.komapper.example.repository.ItemRepository
+org.komapper.example.repository.OrderRepository
+org.komapper.example.repository.ProductRepository

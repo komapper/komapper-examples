@@ -3,7 +3,7 @@ package org.komapper.example.model
 import org.komapper.example.entity.Item
 import org.komapper.example.entity.Product
 
-class ProductAggregate(
+data class ProductAggregate(
     val product: Product,
     val itemSet: Set<Item>,
 )

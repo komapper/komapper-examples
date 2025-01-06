@@ -1,6 +1,6 @@
 [versions]
 junit = "5.11.3"
-komapper = "5.0.0"
+komapper = "5.0.1-SNAPSHOT"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
 quarkus = "3.17.2"
@@ -17,6 +17,7 @@ komapper-starter-jdbc = { module = "org.komapper:komapper-starter-jdbc" }
 komapper-starter-r2dbc = { module = "org.komapper:komapper-starter-r2dbc" }
 komapper-spring-boot-starter-jdbc = { module = "org.komapper:komapper-spring-boot-starter-jdbc" }
 komapper-spring-boot-starter-r2dbc = { module = "org.komapper:komapper-spring-boot-starter-r2dbc" }
+komapper-spring-boot-starter-test-jdbc = { module = "org.komapper:komapper-spring-boot-starter-test-jdbc" }
 
 spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
 spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
