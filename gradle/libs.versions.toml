@@ -1,10 +1,10 @@
 [versions]
-junit = "5.11.3"
+junit = "5.11.4"
 komapper = "5.0.1-SNAPSHOT"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
-quarkus = "3.17.2"
-spring-boot = "3.4.0"
+quarkus = "3.17.7"
+spring-boot = "3.4.1"
 
 [libraries]
 komapper-platform = { module = "org.komapper:komapper-platform", version.ref = "komapper" }
@@ -29,7 +29,7 @@ spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-s
 thymeleaf-extras-springsecurity6 = { module = "org.thymeleaf.extras:thymeleaf-extras-springsecurity6" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 
-ktor-bom = { module = "io.ktor:ktor-bom", version = "3.0.2" }
+ktor-bom = { module = "io.ktor:ktor-bom", version = "3.0.3" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty" }
 ktor-server-freemarker = { module = "io.ktor:ktor-server-freemarker" }
 ktor-server-resources = { module = "io.ktor:ktor-server-resources" }
@@ -52,14 +52,14 @@ testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version
 testcontainers-mysql = { module = "org.testcontainers:mysql" }
 testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 
-freemarker = { module = "org.freemarker:freemarker", version = "2.3.33" }
-freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.0" }
+freemarker = { module = "org.freemarker:freemarker", version = "2.3.34" }
+freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.1" }
 jdbc-h2 = { module = "com.h2database:h2", version = "2.3.232" }
 jdbc-mysql = { module = "mysql:mysql-connector-java", version = "8.0.33" }
-jdbc-postgresql = { module = "org.postgresql:postgresql", version = "42.7.4" }
-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version = "1.4.1" }
-logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.12" }
-mockk = { module = "io.mockk:mockk", version = "1.13.13" }
+jdbc-postgresql = { module = "org.postgresql:postgresql", version = "42.7.5" }
+ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version = "1.5.0" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.16" }
+mockk = { module = "io.mockk:mockk", version = "1.13.16" }
 rest-assured = { module = "io.rest-assured:rest-assured", version="5.5.0" }
 thymeleaf-layout-dialect = { module = "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect", version = "3.3.0" }
 webjars-jquery = { module = "org.webjars:jquery", version = "3.7.1" }
@@ -72,9 +72,9 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 [plugins]
 komapper = { id = "org.komapper.gradle", version.ref = "komapper" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.2" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
-spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.6" }
+spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.7" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
