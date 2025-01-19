@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test
 import org.komapper.example.entity.Category
 import org.komapper.spring.boot.test.autoconfigure.jdbc.KomapperJdbcTest
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 
 @KomapperJdbcTest
+@AutoConfigureTestDatabase
 class CategoryRepositoryTest(
     @Autowired
     private val categoryRepository: CategoryRepository,
