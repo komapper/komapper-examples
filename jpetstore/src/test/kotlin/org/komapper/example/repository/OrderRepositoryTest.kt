@@ -1,8 +1,5 @@
 package org.komapper.example.repository
 
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.LocalDateTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.komapper.core.dsl.Meta
@@ -17,7 +14,9 @@ import org.komapper.example.model.OrderAggregate
 import org.komapper.jdbc.JdbcDatabase
 import org.komapper.spring.boot.test.autoconfigure.jdbc.KomapperJdbcTest
 import org.springframework.beans.factory.annotation.Autowired
-
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 @KomapperJdbcTest
 class OrderRepositoryTest(
