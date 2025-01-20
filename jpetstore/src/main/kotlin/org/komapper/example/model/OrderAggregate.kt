@@ -5,7 +5,7 @@ import org.komapper.example.entity.Order
 import org.komapper.example.entity.OrderStatus
 import org.komapper.example.entity.Product
 
-class OrderAggregate(
+data class OrderAggregate(
     val order: Order,
     val orderStatus: OrderStatus,
     val lineItemSet: Set<LineItem>,

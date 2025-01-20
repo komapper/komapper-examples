@@ -38,6 +38,7 @@ dependencies {
     testImplementation(libs.spring.boot.starter.test) {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation(libs.komapper.spring.boot.starter.test.jdbc)
 }
 
 tasks {
