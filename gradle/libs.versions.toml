@@ -3,7 +3,7 @@ junit = "5.11.4"
 komapper = "5.1.0"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
-quarkus = "3.17.7"
+quarkus = "3.17.8"
 spring-boot = "3.4.1"
 
 [libraries]
