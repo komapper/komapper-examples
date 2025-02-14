@@ -60,7 +60,7 @@ jdbc-postgresql = { module = "org.postgresql:postgresql", version = "42.7.5" }
 ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version = "1.5.0" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.16" }
 mockk = { module = "io.mockk:mockk", version = "1.13.16" }
-rest-assured = { module = "io.rest-assured:rest-assured", version="5.5.0" }
+rest-assured = { module = "io.rest-assured:rest-assured", version="5.5.1" }
 thymeleaf-layout-dialect = { module = "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect", version = "3.4.0" }
 webjars-jquery = { module = "org.webjars:jquery", version = "3.7.1" }
 webjars-locator = { module = "org.webjars:webjars-locator", version = "0.52" }
