@@ -2,5 +2,6 @@ build
 out
 .idea
 .gradle
+.kotlin
 /.sdkmanrc
 /codegen/src/main/kotlin
