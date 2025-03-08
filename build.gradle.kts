@@ -50,7 +50,9 @@ subprojects {
         testImplementation(kotlin("test"))
         if (project !in springBootProjects) {
             testImplementation(kotlin("test"))
+            testImplementation(platform(catalog.junit.bom))
             testImplementation(catalog.junit.api)
+            testRuntimeOnly(catalog.junit.launcher)
             testRuntimeOnly(catalog.junit.engine)
         }
     }
