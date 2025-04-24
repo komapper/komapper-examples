@@ -48,7 +48,7 @@ quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin" }
 quarkus-resteasy = { module = "io.quarkus:quarkus-resteasy" }
 quarkus-resteasy-jsonb = { module = "io.quarkus:quarkus-resteasy-jsonb" }
 
-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "1.20.6" }
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "1.21.0" }
 testcontainers-mysql = { module = "org.testcontainers:mysql" }
 testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 
