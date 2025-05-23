@@ -22,7 +22,7 @@ jobs:
           java-version: 17
 
       - name: Assemble and Check
-        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3
+        uses: gradle/actions/setup-gradle@v4
         with:
           arguments: assemble check
 
