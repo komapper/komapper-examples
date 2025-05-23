@@ -21,10 +21,11 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Assemble and Check
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          arguments: assemble check
+
+      - name: Assemble and Check
+        run: ./gradlew assemble check
 
       - name: Upload reports
         if: failure()
