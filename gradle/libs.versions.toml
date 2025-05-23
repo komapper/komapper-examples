@@ -1,6 +1,6 @@
 [versions]
 junit = "5.12.2"
-komapper = "5.2.1"
+komapper = "5.3.0"
 kotlin = "2.1.21"
 ksp = "2.1.21-2.0.1"
 quarkus = "3.23.0"
