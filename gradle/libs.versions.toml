@@ -53,7 +53,7 @@ testcontainers-mysql = { module = "org.testcontainers:mysql" }
 testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 
 freemarker = { module = "org.freemarker:freemarker", version = "2.3.34" }
-freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.1" }
+freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.3" }
 jdbc-h2 = { module = "com.h2database:h2", version = "2.3.232" }
 jdbc-mysql = { module = "mysql:mysql-connector-java", version = "8.0.33" }
 jdbc-postgresql = { module = "org.postgresql:postgresql", version = "42.7.7" }
