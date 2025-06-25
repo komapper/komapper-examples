@@ -1,5 +1,5 @@
 [versions]
-junit = "5.13.1"
+junit = "5.13.2"
 komapper = "5.4.0"
 kotlin = "2.2.0"
 ksp = "2.1.21-2.0.2"
