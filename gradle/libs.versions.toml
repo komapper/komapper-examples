@@ -1,7 +1,7 @@
 [versions]
 junit = "5.13.4"
 komapper = "5.4.0"
-kotlin = "2.2.10"
+kotlin = "2.2.20"
 ksp = "2.2.10-2.0.2"
 quarkus = "3.26.3"
 spring-boot = "3.5.5"
