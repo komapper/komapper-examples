@@ -82,4 +82,4 @@ kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotl
 kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 quarkus = { id = "io.quarkus", version.ref = "quarkus" }
-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.11.1" }
+graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.11.2" }
