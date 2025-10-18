@@ -48,9 +48,9 @@ quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin" }
 quarkus-resteasy = { module = "io.quarkus:quarkus-resteasy" }
 quarkus-resteasy-jsonb = { module = "io.quarkus:quarkus-resteasy-jsonb" }
 
-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "1.21.3" }
-testcontainers-mysql = { module = "org.testcontainers:mysql" }
-testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "2.0.1" }
+testcontainers-mysql = { module = "org.testcontainers:testcontainers-mysql" }
+testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
 
 freemarker = { module = "org.freemarker:freemarker", version = "2.3.34" }
 freemarker-java8 = { module = "no.api.freemarker:freemarker-java8", version = "3.0.3" }
