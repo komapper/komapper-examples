@@ -156,9 +156,9 @@ class ExampleRepositoryTest : InvocationInterceptor {
     }
 
     override fun interceptTestMethod(
-        invocation: InvocationInterceptor.Invocation<Void>?,
-        invocationContext: ReflectiveInvocationContext<Method>?,
-        extensionContext: ExtensionContext?,
+        invocation: InvocationInterceptor.Invocation<Void?>,
+        invocationContext: ReflectiveInvocationContext<Method>,
+        extensionContext: ExtensionContext,
     ) {
         db.config.session.transactionOperator.required {
             it.isRollbackOnly()
