@@ -29,7 +29,7 @@ spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-s
 thymeleaf-extras-springsecurity6 = { module = "org.thymeleaf.extras:thymeleaf-extras-springsecurity6" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 
-ktor-bom = { module = "io.ktor:ktor-bom", version = "3.3.1" }
+ktor-bom = { module = "io.ktor:ktor-bom", version = "3.3.2" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty" }
 ktor-server-freemarker = { module = "io.ktor:ktor-server-freemarker" }
 ktor-server-resources = { module = "io.ktor:ktor-server-resources" }
