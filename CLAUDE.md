@@ -6,10 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the Komapper Examples repository demonstrating various ways to use Komapper, a Kotlin SQL Mapper library. The repository contains 10 example projects showcasing different frameworks and database access patterns.
 
-- **Komapper Version**: 5.3.0
-- **Kotlin Version**: 2.1.21
+- **Komapper Version**: 7.0.0
+- **Kotlin Version**: 2.4.0
 - **Java Target**: 17
-- **Build Tool**: Gradle 8.14.2 with Kotlin DSL
+- **Build Tool**: Gradle 9.3.0 with Kotlin DSL
 
 ## Common Development Commands
 
@@ -100,10 +100,10 @@ Each example is a separate Gradle subproject demonstrating specific Komapper fea
 
 ### Dependencies and Versions
 All dependency versions are centralized in `gradle/libs.versions.toml`. Key frameworks:
-- Spring Boot: 3.5.3
-- Quarkus: 3.24.0
-- Ktor: 3.2.0
-- Testing: JUnit 5, Testcontainers
+- Spring Boot: 4.1.0
+- Quarkus: 3.36.2
+- Ktor: 3.4.0
+- Testing: JUnit 6, Testcontainers
 
 ### Important Files
 - **Root build configuration**: `build.gradle.kts`

@@ -14,7 +14,7 @@ import org.komapper.example.model.OrderAggregate
 import org.komapper.jdbc.JdbcDatabase
 import org.komapper.spring.boot.test.autoconfigure.jdbc.KomapperJdbcTest
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
+import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime

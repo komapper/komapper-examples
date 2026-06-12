@@ -9,6 +9,14 @@ springBoot {
     mainClass.set("org.komapper.example.ApplicationKt")
 }
 
+dependencyManagement {
+    dependencies {
+        dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.coroutines.get()}")
+        dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${libs.versions.coroutines.get()}")
+        dependency("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${libs.versions.coroutines.get()}")
+    }
+}
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -38,6 +46,9 @@ dependencies {
     testImplementation(libs.spring.boot.starter.test) {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation(libs.spring.boot.jdbc.test)
+    testImplementation(libs.spring.boot.restclient)
+    testImplementation(libs.spring.boot.resttestclient)
     testImplementation(libs.komapper.spring.boot.starter.test.jdbc)
 }
 

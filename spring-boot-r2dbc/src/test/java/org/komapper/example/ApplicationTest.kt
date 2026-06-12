@@ -3,8 +3,8 @@ package org.komapper.example
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.resttestclient.TestRestTemplate
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpMethod
@@ -22,11 +22,14 @@ class ApplicationTest {
     @Test
     fun test() {
         // add
-        val (id, text) = restTemplate.getForObject(
-            UriComponentsBuilder.fromUriString("http://localhost").port(port)
-                .queryParam("text", "Hi!").build().toUri(),
-            Message::class.java,
-        )
+        val (id, text) =
+            checkNotNull(
+                restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://localhost").port(port)
+                        .queryParam("text", "Hi!").build().toUri(),
+                    Message::class.java,
+                ),
+            )
         assertEquals(3, id)
         assertEquals("Hi!", text)
 

@@ -128,7 +128,7 @@ class AccountController(
 
     private fun createSingOn(username: String, form: AccountAddForm): SignOn {
         val rawPassword = form.password!!
-        val encodedPassword = passwordEncoder.encode(rawPassword)
+        val encodedPassword = checkNotNull(passwordEncoder.encode(rawPassword))
         return SignOn(username, encodedPassword)
     }
 

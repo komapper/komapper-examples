@@ -1,10 +1,11 @@
 [versions]
+coroutines = "1.11.0"
 junit = "6.0.2"
-komapper = "5.7.0"
-kotlin = "2.3.0"
+komapper = "7.0.0"
+kotlin = "2.4.0"
 ksp = "2.3.4"
-quarkus = "3.31.0"
-spring-boot = "3.5.10"
+quarkus = "3.36.2"
+spring-boot = "4.1.0"
 
 [libraries]
 komapper-platform = { module = "org.komapper:komapper-platform", version.ref = "komapper" }
@@ -26,8 +27,12 @@ spring-boot-starter-thymeleaf = { module = "org.springframework.boot:spring-boot
 spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-jdbc-test = { module = "org.springframework.boot:spring-boot-jdbc-test" }
+spring-boot-restclient = { module = "org.springframework.boot:spring-boot-restclient" }
+spring-boot-resttestclient = { module = "org.springframework.boot:spring-boot-resttestclient" }
 thymeleaf-extras-springsecurity6 = { module = "org.thymeleaf.extras:thymeleaf-extras-springsecurity6" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+kotlinx-coroutines-bom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "coroutines" }
 
 ktor-bom = { module = "io.ktor:ktor-bom", version = "3.4.0" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty" }

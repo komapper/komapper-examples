@@ -13,6 +13,7 @@ val springBootProjects = subprojects.filter {
 // Retain a reference to rootProject.libs to make the version catalog accessible within allprojects and subprojects.
 // See https://github.com/gradle/gradle/issues/16708
 val catalog = libs
+val coroutinesVersion = libs.versions.coroutines.get()
 
 allprojects {
     apply(plugin = "base")
@@ -36,6 +37,24 @@ allprojects {
         mavenCentral()
     }
 
+    configurations.configureEach {
+        resolutionStrategy.force(
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutinesVersion",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion",
+        )
+    }
+
+    afterEvaluate {
+        configurations.configureEach {
+            resolutionStrategy.force(
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutinesVersion",
+                "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion",
+            )
+        }
+    }
+
     tasks {
         build {
             dependsOn(spotlessApply)
@@ -47,6 +66,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     dependencies {
+        implementation(platform(catalog.kotlinx.coroutines.bom))
         testImplementation(kotlin("test"))
         if (project !in springBootProjects) {
             testImplementation(kotlin("test"))
@@ -66,6 +86,10 @@ subprojects {
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_17)
             }
+        }
+
+        withType<JavaCompile>().configureEach {
+            options.release.set(17)
         }
     }
 }

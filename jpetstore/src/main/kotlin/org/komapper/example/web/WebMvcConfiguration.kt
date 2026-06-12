@@ -2,9 +2,9 @@ package org.komapper.example.web
 
 import org.komapper.example.formatter.BigDecimalFormatter
 import org.komapper.example.formatter.LocalDateTimeFormatter
-import org.springframework.boot.web.server.ErrorPage
+import org.springframework.boot.web.error.ErrorPage
 import org.springframework.boot.web.server.WebServerFactoryCustomizer
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory
+import org.springframework.boot.web.server.servlet.ConfigurableServletWebServerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.format.FormatterRegistry

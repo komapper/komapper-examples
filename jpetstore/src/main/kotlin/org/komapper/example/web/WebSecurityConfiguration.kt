@@ -1,7 +1,7 @@
 package org.komapper.example.web
 
 import org.komapper.example.service.AccountService
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest
+import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -19,7 +19,7 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
     @Bean
     fun persistentTokenRepository(): PersistentTokenRepository {
         val tokenRepository = JdbcTokenRepositoryImpl()
-        tokenRepository.dataSource = dataSource
+        tokenRepository.setDataSource(dataSource)
         return tokenRepository
     }
 
@@ -47,7 +47,9 @@ class WebSecurityConfiguration(private val dataSource: DataSource, private val a
             logout.logoutUrl("/signout")
                 .logoutSuccessUrl("/")
         }
-        http.rememberMe().tokenRepository(persistentTokenRepository())
+        http.rememberMe { rememberMe ->
+            rememberMe.tokenRepository(persistentTokenRepository())
+        }
         http.getSharedObject(AuthenticationManagerBuilder::class.java)
             .userDetailsService<UserDetailsService>(accountService)
             .passwordEncoder(passwordEncoder())
