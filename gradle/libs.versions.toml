@@ -67,7 +67,7 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.34
 mockk = { module = "io.mockk:mockk", version = "1.14.11" }
 rest-assured = { module = "io.rest-assured:rest-assured", version="6.0.0" }
 thymeleaf-layout-dialect = { module = "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect", version = "3.4.0" }
-webjars-jquery = { module = "org.webjars:jquery", version = "3.7.1" }
+webjars-jquery = { module = "org.webjars:jquery", version = "4.0.0" }
 webjars-locator = { module = "org.webjars:webjars-locator", version = "0.52" }
 
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
