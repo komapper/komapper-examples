@@ -3,7 +3,7 @@ coroutines = "1.11.0"
 junit = "6.1.2"
 komapper = "7.0.0"
 kotlin = "2.4.10"
-ksp = "2.3.9"
+ksp = "2.3.10"
 quarkus = "3.37.3"
 spring-boot = "4.1.0"
 
