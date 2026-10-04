@@ -16,7 +16,7 @@ import org.komapper.r2dbc.R2dbcDatabase
  * with the user profile.
  */
 fun Route.userPage(db: R2dbcDatabase, dao: DAOFacade) {
-    /**
+    /*
      * A GET request will return a page with the profile of a given user from its [UserPage.user] name.
      * If the user doesn't exists, it will return a 404 page instead.
      */

@@ -16,7 +16,7 @@ class MainCss()
  * Register the styles, [MainCss] route (/styles/main.css)
  */
 fun Route.styles() {
-    /**
+    /*
      * On a GET request to the [MainCss] route, it returns the `blog.css` file from the resources.
      *
      * Here we could preprocess or join several CSS/SASS/LESS.

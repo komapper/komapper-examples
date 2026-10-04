@@ -19,7 +19,7 @@ import org.komapper.r2dbc.R2dbcDatabase
  * Registers the [Login] and [Logout] routes '/login' and '/logout'.
  */
 fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
-    /**
+    /*
      * A GET request to the [Login], would respond with the login page
      * (unless the user is already logged in, in which case it would redirect to the user's page)
      */
@@ -41,7 +41,7 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
         }
     }
 
-    /**
+    /*
      * A POST request to the [Login] actually processes the [Parameters] to validate them, if valid it sets the session.
      * It will redirect either to the [Login] page with an error in the case of error,
      * or to the [UserPage] if the login was successful.
@@ -70,7 +70,7 @@ fun Route.login(db: R2dbcDatabase, dao: DAOFacade, hash: (String) -> String) {
         }
     }
 
-    /**
+    /*
      * A GET request to the [Logout] page, removes the session and redirects to the [Index] page.
      */
     get<Logout> {
