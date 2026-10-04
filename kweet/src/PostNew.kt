@@ -17,7 +17,7 @@ import org.komapper.r2dbc.R2dbcDatabase
  * Register routes for the [PostNew] route '/post-new'
  */
 fun Route.postNew(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
-    /**
+    /*
      * A GET request returns a page with a form to post a new Kweet in the case the user
      * is logged also generating a [code] token to prevent.
      *
@@ -43,7 +43,7 @@ fun Route.postNew(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> S
             }
         }
     }
-    /**
+    /*
      * A POST request actually tries to create a new [Kweet].
      * It validates the `date`, `code` and `text` parameters and redirects to the login page on failure.
      * On success it creates the new [Kweet] and redirect to the [ViewKweet] page to view that specific Kweet.

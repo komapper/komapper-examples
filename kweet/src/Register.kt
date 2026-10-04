@@ -20,7 +20,7 @@ import org.komapper.r2dbc.R2dbcDatabase
  * Register routes for user registration in the [Register] route (/register)
  */
 fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> String) {
-    /**
+    /*
      * A POST request to the [Register] route, will try to create a new user.
      *
      * - If the user is already logged, it redirects to the [UserPage] page.
@@ -48,10 +48,22 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
             val error = Register(userId, displayName, email)
 
             when {
-                password.length < 6 -> call.redirect(error.copy(error = "Password should be at least 6 characters long"))
-                userId.length < 4 -> call.redirect(error.copy(error = "Login should be at least 4 characters long"))
-                !userNameValid(userId) -> call.redirect(error.copy(error = "Login should be consists of digits, letters, dots or underscores"))
-                dao.user(userId) != null -> call.redirect(error.copy(error = "User with the following login is already registered"))
+                password.length < 6 -> {
+                    call.redirect(error.copy(error = "Password should be at least 6 characters long"))
+                }
+
+                userId.length < 4 -> {
+                    call.redirect(error.copy(error = "Login should be at least 4 characters long"))
+                }
+
+                !userNameValid(userId) -> {
+                    call.redirect(error.copy(error = "Login should be consists of digits, letters, dots or underscores"))
+                }
+
+                dao.user(userId) != null -> {
+                    call.redirect(error.copy(error = "User with the following login is already registered"))
+                }
+
                 else -> {
                     val hash = hashFunction(password)
                     val newUser = User(userId, email, displayName, hash)
@@ -61,8 +73,14 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
                     } catch (e: Throwable) {
                         when {
                             // NOTE: This is security issue that allows to enumerate/verify registered users. Do not do this in real app :)
-                            dao.user(userId) != null -> call.redirect(error.copy(error = "User with the following login is already registered"))
-                            dao.userByEmail(email) != null -> call.redirect(error.copy(error = "User with the following email $email is already registered"))
+                            dao.user(userId) != null -> {
+                                call.redirect(error.copy(error = "User with the following login is already registered"))
+                            }
+
+                            dao.userByEmail(email) != null -> {
+                                call.redirect(error.copy(error = "User with the following email $email is already registered"))
+                            }
+
                             else -> {
                                 application.log.error("Failed to register user", e)
                                 call.redirect(error.copy(error = "Failed to register"))
@@ -77,7 +95,7 @@ fun Route.register(db: R2dbcDatabase, dao: DAOFacade, hashFunction: (String) -> 
         }
     }
 
-    /**
+    /*
      * A GET request would show the registration form (with an error if specified by the URL in the case there was an error in the form processing)
      * If the user is already logged, it redirects the client to the [UserPage] instead.
      */
