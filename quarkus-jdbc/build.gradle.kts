@@ -8,6 +8,7 @@ dependencies {
     platform(libs.komapper.platform).let {
         implementation(it)
         ksp(it)
+        kspTest(it)
     }
     implementation(enforcedPlatform(libs.quarkus.bom))
     implementation(libs.quarkus.kotlin)
@@ -17,6 +18,7 @@ dependencies {
     implementation(libs.komapper.quarkus.jdbc)
     implementation(libs.komapper.dialect.postgresql.jdbc)
     ksp(libs.komapper.processor)
+    kspTest(libs.komapper.processor)
     testImplementation(libs.quarkus.junit5)
     testImplementation(libs.rest.assured)
     testImplementation(libs.quarkus.jdbc.h2)
