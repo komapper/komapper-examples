@@ -5,7 +5,7 @@ komapper = "7.0.0"
 kotlin = "2.4.21"
 ksp = "2.3.12"
 quarkus = "3.40.1"
-spring-boot = "4.1.1"
+spring-boot = "4.1.2"
 
 [libraries]
 komapper-platform = { module = "org.komapper:komapper-platform", version.ref = "komapper" }
